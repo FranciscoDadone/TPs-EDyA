@@ -1,0 +1,1 @@
+/bin/c++  -g  -rdynamic CMakeFiles/tp0.dir/main.cpp.o  -o tp0 

@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1617919934 source:/home/franciscodadone/Desktop/Facultad/EDyA/tp1/main.cpp
+	<iostream>
+	"date.h"
+	"card.h"
+	"word.h"
+	"bitFieldsExample.h"
+
+1617915813 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/date.h
+	<math.h>
+
+1617834109 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/word.h
+
+1617895257 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/bitFieldsExample.h
+
+1617921722 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/card.h
+
