@@ -1,8 +1,7 @@
 #include <iostream>
 #include "date.h"
 #include "card.h"
-
-
+#include "word.h"
 
 using namespace std;
 
@@ -22,22 +21,23 @@ int main()
 
 
     // ## EJERCICIO 2 ## //
-    /*
+
     Date d = {29, FEBRUARY, 2020};
-    cout << "to_str(d):                  " << to_str(d)                  << endl;
-    cout << "to_date('11/10/2021').year: " << to_date((char*)("11/10/2021")).year << endl;
-    cout << "leapYear(d):                " << leapYear(d)                << endl;
-    cout << "isValidDate(d):             " << isValidDate(d)             << endl;
+    cout << "to_str(d):                   " << to_str(d)                  << endl;
+    cout << "to_date('11/10/2021').day:   " << to_date((char*)("11/10/2021")).day   << endl;
+    cout << "to_date('11/10/2021').month: " << to_date((char*)("11/10/2021")).month << endl;
+    cout << "to_date('11/10/2021').year:  " << to_date((char*)("11/10/2021")).year  << endl;
+    cout << "leapYear(d):                 " << leapYear(d)                << endl;
+    cout << "isValidDate(d):              " << isValidDate(d)             << endl;
     Date d1 = {26, OCTOBER, 2010};
     Date d2 = {26, OCTOBER, 2001};
-    cout << "getDifference(d1, d2):      " << getDifference(d1, d2)      << endl;
-    cout << "getDifference(d2, d1):      " << getDifference(d2, d1)      << endl;
-    */
+    cout << "getDifference(d1, d2):       " << getDifference(d1, d2)      << endl;
+    cout << "getDifference(d2, d1):       " << getDifference(d2, d1)      << endl;
+
 
 
     // ## EJERCICIO 3 ## //
     /*
-    #include "word.h"
     word w = {0xA0B1C2D3};
     cout << endl << "word: "<< hex << w.data;
     w.b0 = 0xD3;
@@ -76,6 +76,7 @@ int main()
     */
 
 
+
     // ## EJERCICIO 5 ## //
     // Los campos de bits nos ayudan a especificiar cuantos bits necesitamos que una variable almacene,
     // por ejemplo, normalmente creamos variables que son de 8, 16, 32, 64 bits, pero a lo mejor solo
@@ -96,16 +97,17 @@ int main()
     */
 
 
-    // ## EJERCICIO 6 ## //
 
+    // ## EJERCICIO 6 ## //
+    /*
     Card * deck = initCards();
     for(unsigned char cardNumber = 0; cardNumber < 52; cardNumber++) {
-        cout << "Number: "   << (unsigned int)cardNumber             <<
-                " | Color: " << (unsigned int)deck[cardNumber].color <<
-                " | Suit: "  << (unsigned int)deck[cardNumber].suit  <<
-                " | Value: " << (unsigned int)deck[cardNumber].value << endl;
+        cout << "Number: "   << +cardNumber             <<
+                " | Color: " << +deck[cardNumber].color <<
+                " | Suit: "  << +deck[cardNumber].suit  <<
+                " | Value: " << +deck[cardNumber].value << endl;
     }
     cout << "Size of struct Card: " << sizeof(Card) << " bytes" << endl;
-
+    */
     return 0;
 }

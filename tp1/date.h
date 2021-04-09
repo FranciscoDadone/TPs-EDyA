@@ -76,24 +76,21 @@ Month to_month(unsigned short m) {
 * @return Date
 */
 // Como en ascii el '0' es el 48, le podemos restar directamente '0' para convertirlo a int.
-Date to_date(char *str) {
-    if(str == NULL)
+Date to_date(char *str) {       // se puede hacer muchísimo más fácil esta función con la librería string,
+    if(str == NULL)             // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
         return {0, _NULL, 0};
-    unsigned char day, month, j = 0;
+    unsigned char day, month;
     char year[5];
 
     for(unsigned int i = 0; i <= 9; i++) {
-        if(i == 0 || i == 1) { // days pos
-            day += (str[i] - '0');
-        } else if(i == 3 || i == 4) { // month pos
-            if(i == 3) {
-                month = (str[i] - '0') * 10;
-            } else {
-                month += (str[i] - '0');
-            }
-        } else if(i >= 6) {
-            year[j] = str[i];
-            j++;
+        if(i == 0 || i == 1) {                  // days position
+            if(i == 0) day = (str[i] - '0') * 10;
+            else       day += (str[i] - '0');
+        } else if(i == 3 || i == 4) {           // month position
+            if(i == 3) month = (str[i] - '0') * 10;
+            else       month += (str[i] - '0');
+        } else if(i >= 6) {                     // year position
+            year[i - 6] = str[i];
         }
     }
     unsigned int y = 0, k = 3;
@@ -154,8 +151,8 @@ bool isValidDate(Date date) {
 * @param d
 * @return char *
 */
-char* to_str(Date d) {      // se puede hacer muchísimo más fácil con la librería string,
-                            // pero tuve en cuenta que en este tp todavia no sabemos usarla.
+char* to_str(Date d) {      // se puede hacer muchísimo más fácil esta función con la librería string,
+                            // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
     char* str = (char*)malloc(9);
     if(!isValidDate(d))
         return str;
