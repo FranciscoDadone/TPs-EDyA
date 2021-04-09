@@ -182,17 +182,11 @@ char* to_str(Date d) {      // se puede hacer muchísimo más fácil con la libr
     return str;
 }
 
-
 unsigned int dayOfYear(Date d) {
     unsigned int leapYearCal   [] = {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
     unsigned int nonLeapYearCal[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
-    if(leapYear(d)) {
-        return leapYearCal[d.month - 1] + d.day;
-    } else {
-        return nonLeapYearCal[d.month - 1] + d.day;
-    }
+    return (leapYear(d)) ? leapYearCal[d.month - 1] + d.day : nonLeapYearCal[d.month - 1] + d.day;
 }
-
 
 int getDifference(Date dt1, Date dt2) {
     int  diff   = 0;
