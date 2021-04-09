@@ -20,25 +20,12 @@ struct Card {
 Card * initCards() {
     Card * cards = new Card[52];
     for(unsigned char i = 0; i < 52; i++) {
-        if(i <= 12) {
-            cards[i].color = BLACK;
-            cards[i].value = i;
-        } else if(i > 12 && i <= 25) {
-            cards[i].color = RED;
-            cards[i].value = i - 13;
-        } else if(i > 25 && i <= 38) {
-            cards[i].color = RED;
-            cards[i].value = i - (13 * 2);
-        } else if(i > 38 && i <= 51) {
-            cards[i].color = BLACK;
-            cards[i].value = i - (13 * 3);
-        }
-        cards[i].suit  = ceil(i / 13);
+        const unsigned char SUIT = ceil(i / 13);
+        cards[i].color = (SUIT == CLUBS || SUIT == SPADES) ? BLACK : RED;
+        cards[i].value = i - (13 * SUIT);
+        cards[i].suit  = SUIT;
     }
     return cards;
 }
-
-
-
 
 #endif // CARD_H_INCLUDED

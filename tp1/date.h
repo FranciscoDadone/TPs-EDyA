@@ -189,21 +189,15 @@ unsigned int dayOfYear(Date d) {
 }
 
 int getDifference(Date dt1, Date dt2) {
-    int  diff   = 0;
-    Date MinYear, MaxYear, MinMonth, MaxMonth, MinDay, MaxDay;
+    int diff = 0;
     if(isValidDate(dt1) && isValidDate(dt2)) {
         if(dt1.month == dt2.month && dt1.year == dt2.year)
             return dt2.day - dt1.day;
 
-        if(dt1.year > dt2.year) {
-            MinYear = dt2;
-            MaxYear = dt1;
-        } else if(dt1.year < dt2.year) {
-            MinYear = dt1;
-            MaxYear = dt2;
-        }
+        Date MinYear = (dt1.year > dt2.year) ? dt2 : dt1,
+             MaxYear = (dt1.year < dt2.year) ? dt2 : dt1;
 
-        for(unsigned int i = MinYear.year + 1; i <= MaxYear.year; i++) {
+        for(unsigned int i = (MinYear.year + 1); i <= MaxYear.year; i++) {
             diff += (leapYear({1, JANUARY, i})) ? 366 : 365;
         }
 
@@ -223,15 +217,19 @@ typedef bool orden;
 void sort(Date *dates, size_t N, orden o=asc) {
     for(unsigned int i = 0; i <= (unsigned int)N; i++) {
         for(unsigned int j = 0; j < (unsigned int)(N - 1); j++) {
-            if((getDifference(dates[j], dates[j + 1]) > 0) && o == desc) {
-                Date tmp     = dates[j];
-                dates[j]     = dates[j + 1];
-                dates[j + 1] = tmp;
-            } else if(getDifference(dates[j + 1], dates[j]) > 0 && o == asc) {
+            if(getDifference(dates[j], dates[j + 1]) > 0) {
                 Date tmp     = dates[j];
                 dates[j]     = dates[j + 1];
                 dates[j + 1] = tmp;
             }
+        }
+    }
+    if(o == asc) {
+        unsigned int j =  N - 1;
+        for(unsigned int i = 0; i < j; i++, j--) {
+            Date tmp     = dates[i];
+            dates[i]     = dates[j];
+            dates[j]     = tmp;
         }
     }
 }
