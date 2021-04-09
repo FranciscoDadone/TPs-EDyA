@@ -175,11 +175,7 @@ char* to_str(Date d) {      // se puede hacer muchísimo más fácil con la libr
                 else
                     str[i] = (i == 3) ? '0' + (d.month / 10) : '0' + (d.month % 10);
             } else if(i >= 6) { // year pos
-                str[i] = '0' + (d.year / (unsigned int)pow(10, (3 - (i - 6))) % 10); // ((i == 6) ? 0 : 10)
-                /*str[i] = (i == 6) ? '0' + (d.year  / 1000)      :
-                         (i == 7) ? '0' + ((d.year / 100) % 10) :
-                         (i == 8) ? '0' + ((d.year / 10)  % 10) :
-                         (i == 9) ? '0' + (d.year  % 10)        : '0';*/
+                str[i] = '0' + (d.year / (unsigned int)pow(10, (3 - (i - 6))) % 10);
             }
         }
     }
