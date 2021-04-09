@@ -15,9 +15,9 @@ struct dateWithBitFields {
 dateWithoutBitFields a = {31, 12, 2021};
 dateWithBitFields    b = {31, 12, 2021};
 
-cout << "Tamaño sin usar bit fields:    " << sizeof(dateWithoutBitFields) << endl;
-cout << "Tamaño usando bit fields:      " << sizeof(dateWithBitFields)    << endl << endl;
-cout << "Resultado sin usar bit fields: " << a.d << " " << a.m << " " << a.y << endl;
+cout << "Tamaño sin usar bit fields:    " << sizeof(dateWithoutBitFields) << " bytes"<< endl;
+cout << "Tamaño usando bit fields:      " << sizeof(dateWithBitFields)    << " bytes"<< endl;
+cout << "\nResultado sin usar bit fields: " << a.d << " " << a.m << " " << a.y << endl;
 cout << "Resultado usando bit fields:   " << b.d << " " << b.m << " " << b.y << endl;
 
 

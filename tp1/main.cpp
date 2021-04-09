@@ -22,17 +22,17 @@ int main()
 
 
     // ## EJERCICIO 2 ## //
-
+    /*
     Date d = {29, FEBRUARY, 2000};
     cout << "to_str(d):                  " << to_str(d)                  << endl;
-    cout << "to_date('11/10/2020').year: " << to_date("11/10/2020").year << endl;
+    cout << "to_date('11/10/2020').year: " << to_date((char*)("11/10/2001")).year << endl;
     cout << "leapYear(d):                " << leapYear(d)                << endl;
     cout << "isValidDate(d):             " << isValidDate(d)             << endl;
     Date d1 = {26, OCTOBER, 2010};
     Date d2 = {26, OCTOBER, 2001};
     cout << "getDifference(d1, d2):      " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):      " << getDifference(d2, d1)      << endl;
-
+    */
 
 
 
@@ -51,7 +51,7 @@ int main()
     cout << endl << "b3: "<< hex << int(w.b3);
 
     cout << endl << endl << "&w: " << &w << endl;
-    cout << "sizeof(w): " << sizeof(w) << endl;
+    cout << "sizeof(w): " << sizeof(w) << " bytes" << endl;
     */
     // La relación que hay entre las direcciones de memoria de la estructura es que todas empiezan igual (están en el mismo sector) y solo varían los 2 últimos dígitos en el hex. Osea, se encuentran definidos en memoria de forma conjunta y ordenada a como fueron definidos.
 
@@ -71,7 +71,7 @@ int main()
 
     sort(dates, arr_size, desc);
 
-    for(int i = 0; i < arr_size; i++) {
+    for(unsigned char i = 0; i < (unsigned char)arr_size; i++) {
         cout << dates[i].day << "/" << dates[i].month << "/" << dates[i].year << endl;
     }
     */
@@ -91,6 +91,7 @@ int main()
     // otra forma de economizar en el peso.
 
     // Ejemplo de bit fields
+
     /*
     #include "bitFieldsExample.h"
     */
@@ -99,15 +100,13 @@ int main()
     // ## EJERCICIO 6 ## //
     /*
     Card * deck = initCards();
-    for(char cardNumber = 0; cardNumber < 52; cardNumber++) {
+    for(unsigned char cardNumber = 0; cardNumber < 52; cardNumber++) {
         cout << "Number: "   << (unsigned int)cardNumber             <<
                 " | Color: " << (unsigned int)deck[cardNumber].color <<
                 " | Suit: "  << (unsigned int)deck[cardNumber].suit  <<
                 " | Value: " << (unsigned int)deck[cardNumber].value << endl;
     }
-    cout << "Size of Card: " << sizeof(Card) << endl;
+    cout << "Size of Card: " << sizeof(Card) << " bytes" << endl;
     */
-    //cout << (deck[0].color == BLACK) << endl;
-
     return 0;
 }

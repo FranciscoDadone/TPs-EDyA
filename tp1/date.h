@@ -8,8 +8,8 @@ enum Month {
 };
 
 struct Date {
-    unsigned char day     = 1;
-    Month month = JANUARY;
+    unsigned int day     = 1;           // Not sure to use unsigned int or unsigned char.
+    Month month          = JANUARY;     // Char makes sense but when printing you need to cast to int
     unsigned int year    = 1970;
 };
 
@@ -78,16 +78,12 @@ Month to_month(unsigned short m) {
 Date to_date(char *str) {
     if(str == NULL)
         return {0, _NULL, 0};
-    unsigned int day, month, j = 0;
+    unsigned char day, month, j = 0;
     char year[5];
 
     for(unsigned int i = 0; i <= 9; i++) {
         if(i == 0 || i == 1) { // days pos
-            if(i == 0) {
-                day = (str[i] - '0') * 10;
-            } else {
-                day += (str[i] - '0');
-            }
+            day += (str[i] - '0');
         } else if(i == 3 || i == 4) { // month pos
             if(i == 3) {
                 month = (str[i] - '0') * 10;
@@ -99,7 +95,7 @@ Date to_date(char *str) {
             j++;
         }
     }
-    int y = 0, k = 3;
+    unsigned int y = 0, k = 3;
     for(char n: year) {
         if((n - '0') >= 0 && (n - '0') <= 9) {
             y += (unsigned int)(n - '0') * pow(10, k);
@@ -114,7 +110,7 @@ Date to_date(char *str) {
 * @param d
 */
 bool leapYear(Date d) {
-    return (d.year % 4 == 0 && d.year % 100 != 0 || d.year % 400 == 0);
+    return ((d.year % 4 == 0 && d.year % 100 != 0) || (d.year % 400 == 0));
 }
 
 /**
@@ -133,14 +129,17 @@ bool isValidDate(Date date) {
             case DECEMBER:
                 if(date.day <= 31 && date.day >= 1) {return true;} break;
             case FEBRUARY:
-                if(leapYear(date) && (date.day <= 29 && date.day >= 1)) {return true;}
-                else if(!leapYear(date) && (date.day <= 28 && date.day >= 1)) {return true;} break;
+                if(leapYear(date) && (date.day <= 29 && date.day >= 1)) return true;
+                else if(!leapYear(date) && (date.day <= 28 && date.day >= 1)) return true;
+                break;
             case APRIL    :
             case JUNE     :
             case JULY     :
             case SEPTEMBER:
             case NOVEMBER :
-                if(date.day <= 30 && date.day >= 1) {return true;} break;
+                if(date.day <= 30 && date.day >= 1) return true;
+                break;
+            case _NULL: return false;
             }
         }
     }
@@ -154,10 +153,9 @@ bool isValidDate(Date date) {
 * @return char *
 */
 char* to_str(Date d) {
-    if(!isValidDate(d))
-        return NULL;
-
     char* str = (char*)malloc(10);
+    if(!isValidDate(d))
+        return str;
 
     for(unsigned int i = 0; i <= 9; i++) {
         if(i == 2 || i == 5) {
@@ -252,6 +250,7 @@ int getDifference(Date dt1, Date dt2) {
         }
         return diff * symbol;
     }
+    return 0;
 }
 
 enum {
@@ -262,8 +261,8 @@ enum {
 typedef bool orden;
 
 void sort(Date *dates, size_t N, orden o=asc) {
-    for(int i = 0; i <= N; i++) {
-        for(int j = 0; j < (N - 1); j++) {
+    for(unsigned int i = 0; i <= (unsigned int)N; i++) {
+        for(unsigned int j = 0; j < (unsigned int)(N - 1); j++) {
             if((getDifference(dates[j], dates[j + 1]) > 0) && o == desc) {
                 Date tmp     = dates[j];
                 dates[j]     = dates[j + 1];

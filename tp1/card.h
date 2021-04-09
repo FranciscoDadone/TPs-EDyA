@@ -19,7 +19,7 @@ struct Card {
 
 Card * initCards() {
     Card * cards = new Card[52];
-    for(char i = 0; i < 52; i++) {
+    for(unsigned char i = 0; i < 52; i++) {
         if(i <= 12) {
             cards[i].color = BLACK;
             cards[i].value = i;
