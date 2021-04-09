@@ -12,6 +12,7 @@ struct dateWithoutBitFields {
 struct dateWithBitFields {
     unsigned int d:5, m:4, y:16;
 };
+
 dateWithoutBitFields a = {31, 12, 2021};
 dateWithBitFields    b = {31, 12, 2021};
 

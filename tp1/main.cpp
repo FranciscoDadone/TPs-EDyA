@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "date.h"
 #include "card.h"
 #include "word.h"
@@ -10,18 +11,17 @@ int main()
 
     // ## EJERCICIO 1 ## //
     /*
-    Month m = OCTOBER;
-    cout << "Mes siguiente:                      " << next(m)     << endl;
-    cout << "Mes anterior:                       " << previous(m) << endl;
-    cout << "to_int(m):                          " << to_int(m)   << endl;
-    cout << "to_str(m):                          " << to_str(m)   << endl;
-    cout << "to_month(m):                        " << to_month(m) << endl;
+    Month m = DECEMBER;
+    cout << "Mes siguiente: " << next(m)     << endl;
+    cout << "Mes anterior:  " << previous(m) << endl;
+    cout << "to_int(m):     " << to_int(m)   << endl;
+    cout << "to_str(m):     " << to_str(m)   << endl;
+    cout << "to_month(m):   " << to_month(m) << endl;
     */
 
 
-
     // ## EJERCICIO 2 ## //
-
+    /*
     Date d = {29, FEBRUARY, 2020};
     cout << "to_str(d):                   " << to_str(d)                  << endl;
     cout << "to_date('11/10/2021').day:   " << to_date((char*)("11/10/2021")).day   << endl;
@@ -33,7 +33,7 @@ int main()
     Date d2 = {26, OCTOBER, 2001};
     cout << "getDifference(d1, d2):       " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):       " << getDifference(d2, d1)      << endl;
-
+    */
 
 
     // ## EJERCICIO 3 ## //
@@ -75,20 +75,34 @@ int main()
     }
     */
 
+    /****************************************************************************************
+     # Comentar: ¿Cómo se pueden hacer distintos ordenamientos sin modificar el arreglo original y
+     sin crear una copia completa de la estructura (“no programar”)?
+     * Rta: Para no modificar el arreglo original se puede hacer una copia del mismo. En esa copia
+     para no crear una copia completa de la estructura, se puede verificar cada campo (dia, mes año)
+     y si coinciden los días y los meses, se puede ingresar a la dirección de memoria de los años y
+     cambiar solo el valor de los años sin tener que copiar toda la estructura completa.
+     # Ej: 10/10/2001
+         10/10/2020
+     Sólo se copiarían los años sin tener que copiar la estructura (Date) completa.
+    *****************************************************************************************/
+
 
 
     // ## EJERCICIO 5 ## //
-    // Los campos de bits nos ayudan a especificiar cuantos bits necesitamos que una variable almacene,
-    // por ejemplo, normalmente creamos variables que son de 8, 16, 32, 64 bits, pero a lo mejor solo
-    // necesitamos 3 bits de esa variable. Un campo de bits nos deja especificar cuantos bits exactamente
-    // una variable va a tener.
+    /****************************************************************************************
+     Los campos de bits nos ayudan a especificiar cuantos bits necesitamos que una variable
+     almacene, por ejemplo, normalmente creamos variables que son de 8, 16, 32, 64 bits,
+     pero a lo mejor solo necesitamos 3 bits de esa variable. Un campo de bits nos deja
+     especificar cuantos exactamente una variable va a necesitar.
 
-    // Desventajas : hay cosas que dependen mucho de los compiladores que se usen, como por ejemplo sumar
-    // 1 a un unsigned char de x bits. Y otros problemas como que si hay un overflow está todo en manos
-    // del compilador, etc...
+    # Desventajas : hay cosas que dependen mucho de los compiladores que se usen, como por
+    ejemplo sumar 1 a un unsigned char de x bits. Y otros problemas como que si hay un
+    overflow está todo en manos del compilador, etc...
 
-    // Ventajas : son más conservadores en el uso de la ram. Si se quiere mandar paquete por la red, es
-    // otra forma de economizar en el peso.
+    # Ventajas : son más conservadores en el uso de la ram. Si se quiere mandar paquete por
+    la red, es otra forma de economizar en el peso.
+    *****************************************************************************************/
 
     // Ejemplo de bit fields
 

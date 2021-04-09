@@ -11,11 +11,9 @@ enum value {
     ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
 };
 
-
 struct Card {
-    unsigned char color:2, suit:3, value:4;
+    unsigned char color:1, suit:2, value:4;
 };
-
 
 Card * initCards() {
     Card * cards = new Card[52];

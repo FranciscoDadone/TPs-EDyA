@@ -4,7 +4,7 @@
 union word {
     unsigned int data;
     struct {
-        unsigned int b0:8, b1:8, b2:8, b3:8;
+        unsigned short int b0:8, b1:8, b2:8, b3:8;
     };
 };
 
