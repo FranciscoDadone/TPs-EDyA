@@ -190,12 +190,10 @@ unsigned int dayOfYear(Date d) {
 
 int getDifference(Date dt1, Date dt2) {
     int  diff   = 0;
-    char symbol = 1;
     Date MinYear, MaxYear, MinMonth, MaxMonth, MinDay, MaxDay;
     if(isValidDate(dt1) && isValidDate(dt2)) {
-        if(dt1.month == dt2.month && dt1.year == dt2.year){
+        if(dt1.month == dt2.month && dt1.year == dt2.year)
             return dt2.day - dt1.day;
-        }
 
         if(dt1.year > dt2.year) {
             MinYear = dt2;
@@ -206,25 +204,16 @@ int getDifference(Date dt1, Date dt2) {
         }
 
         for(unsigned int i = MinYear.year + 1; i <= MaxYear.year; i++) {
-            Date leapYearCheckDate = {1, JANUARY, i};
-            if(leapYear(leapYearCheckDate)) {
-                diff += 366;
-            } else {
-                diff += 365;
-            }
+            diff += (leapYear({1, JANUARY, i})) ? 366 : 365;
         }
+
         int d = dayOfYear(dt1) - dayOfYear(dt2);
-        diff += d;
-        if(d < 0 || dt1.year > dt2.year){
-            d *= -1;
-            symbol = -1;
-        }
-        return diff * symbol;
+        return (diff += d) * ((d < 0 || dt1.year > dt2.year) ? -1 : 1);
     }
     return 0;
 }
 
-enum {
+enum Orden {
     asc  = 0,
     desc = 1
 };
