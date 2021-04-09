@@ -50,7 +50,7 @@ Month to_month(unsigned short m) {
 */
 // Como en ascii el '0' es el 48, le podemos restar directamente '0' para convertirlo a int.
 Date to_date(char *str) {       // se puede hacer muchísimo más fácil esta función con la librería string,
-    if(str == NULL)             // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
+    if(str == nullptr)             // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
         return {0, _NULL, 0};
     unsigned char day, month;
     char year[5];
@@ -70,7 +70,7 @@ Date to_date(char *str) {       // se puede hacer muchísimo más fácil esta fu
     for(char n: year) {
         n -= '0';
         if((n) >= 0 && (n) <= 9) {
-            y += (unsigned short int)(n) * pow(10, k);
+            y += (unsigned short int)((unsigned short int)(n) * pow(10, k));
             k--;
         }
     }
@@ -94,12 +94,12 @@ bool isValidDate(Date date) {
         if(date.month <= 12 && date.month >= 1) {
             if(date.month == JANUARY || date.month == MARCH   || date.month == MAY ||
                date.month == AUGUST  || date.month == OCTOBER || date.month == DECEMBER)
-                    return (date.day <= 31 && date.day >= 1) ? true : false;
+                    return date.day <= 31 && date.day >= 1;
             else if(date.month == FEBRUARY) {
-                return (leapYear(date) && (date.day <= 29 && date.day >= 1)) ? true :
-                       (!leapYear(date) && (date.day <= 28 && date.day >= 1)) ? true : false;
+                return (leapYear(date) && (date.day <= 29 && date.day >= 1)) ||
+                       (!leapYear(date) && (date.day <= 28 && date.day >= 1));
             } else
-                return (date.day <= 30 && date.day >= 1) ? true : false;
+                return (date.day <= 30 && date.day >= 1);
         }
     }
     return false;
@@ -158,7 +158,7 @@ int getDifference(Date dt1, Date dt2) {
             diff += (leapYear({1, JANUARY, i})) ? 366 : 365;
         }
 
-        short int d = dayOfYear(dt1) - dayOfYear(dt2);
+        auto d = (short int)(dayOfYear(dt1) - dayOfYear(dt2));
         return (diff += d) * ((d < 0 || dt1.year > dt2.year) ? -1 : 1);
     }
     return 0;
