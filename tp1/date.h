@@ -75,6 +75,7 @@ Month to_month(unsigned short m) {
 * de formato dd/mm/yyyy
 * @return Date
 */
+// Como en ascii el '0' es el 48, le podemos restar directamente '0' para convertirlo a int.
 Date to_date(char *str) {
     if(str == NULL)
         return {0, _NULL, 0};
@@ -97,8 +98,9 @@ Date to_date(char *str) {
     }
     unsigned int y = 0, k = 3;
     for(char n: year) {
-        if((n - '0') >= 0 && (n - '0') <= 9) {
-            y += (unsigned int)(n - '0') * pow(10, k);
+        n -= '0';
+        if((n) >= 0 && (n) <= 9) {
+            y += (unsigned int)(n) * pow(10, k);
             k--;
         }
     }
@@ -152,53 +154,32 @@ bool isValidDate(Date date) {
 * @param d
 * @return char *
 */
-char* to_str(Date d) {
-    char* str = (char*)malloc(10);
+char* to_str(Date d) {      // se puede hacer muchísimo más fácil con la librería string,
+                            // pero tuve en cuenta que en este tp todavia no sabemos usarla.
+    char* str = (char*)malloc(9);
     if(!isValidDate(d))
         return str;
 
     for(unsigned int i = 0; i <= 9; i++) {
-        if(i == 2 || i == 5) {
+        if(i == 2 || i == 5)
             str[i] = '/';
-        } else {
+        else {
             if(i == 0 || i == 1) {  // days position
-                if(d.day < 10) {    // if the day has only one character
-                    if(i == 0) {
-                        str[i] = '0';
-                    } else if(i == 1) {
-                        str[i] = '0' + d.day;
-                    }
-                } else {
-                    if(i == 0) {
-                        str[i] = '0' + (d.day / 10);
-                    } else {
-                        str[i] = '0' + (d.day % 10);
-                    }
-                }
+                if(d.day < 10)    // if the day has only one character
+                    str[i] = (i == 0) ? '0' : '0' + d.day;
+                else
+                    str[i] = (i == 0) ? '0' + (d.day / 10) : '0' + (d.day % 10);
             } else if(i == 3 || i == 4) { // month pos
-               if(to_int(d.month) < 10) {    // if the month has only one character
-                    if(i == 3) {
-                        str[i] = '0';
-                    } else {
-                        str[i] = '0' + to_int(d.month);
-                    }
-                } else {
-                    if(i == 3) {
-                        str[i] = '0' + (d.month / 10);
-                    } else {
-                        str[i] = '0' + (d.month % 10);
-                    }
-                }
+                if(to_int(d.month) < 10)    // if the month has only one character
+                    str[i] = (i == 3) ? '0' : '0' + to_int(d.month);
+                else
+                    str[i] = (i == 3) ? '0' + (d.month / 10) : '0' + (d.month % 10);
             } else if(i >= 6) { // year pos
-                if(i == 6) {
-                    str[i] = '0' + (int)(d.year / 1000);
-                } else if(i == 7) {
-                    str[i] = '0' + (int)((d.year / 100) % 10);
-                } else if(i == 8) {
-                    str[i] = '0' + (int)((d.year / 10) % 10);
-                } else if(i == 9) {
-                    str[i] = '0' + (int)(d.year % 10);
-                }
+                str[i] = '0' + (d.year / (unsigned int)pow(10, (3 - (i - 6))) % 10); // ((i == 6) ? 0 : 10)
+                /*str[i] = (i == 6) ? '0' + (d.year  / 1000)      :
+                         (i == 7) ? '0' + ((d.year / 100) % 10) :
+                         (i == 8) ? '0' + ((d.year / 10)  % 10) :
+                         (i == 9) ? '0' + (d.year  % 10)        : '0';*/
             }
         }
     }

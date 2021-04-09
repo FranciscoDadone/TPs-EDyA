@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="bitFieldsExample.h" />
+		<Unit filename="card.h" />
 		<Unit filename="date" />
 		<Unit filename="date.h" />
 		<Unit filename="main.cpp" />

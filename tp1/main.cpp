@@ -22,17 +22,17 @@ int main()
 
 
     // ## EJERCICIO 2 ## //
-    /*
-    Date d = {29, FEBRUARY, 2000};
+
+    Date d = {29, FEBRUARY, 2020};
     cout << "to_str(d):                  " << to_str(d)                  << endl;
-    cout << "to_date('11/10/2020').year: " << to_date((char*)("11/10/2001")).year << endl;
+    cout << "to_date('11/10/2021').year: " << to_date((char*)("11/10/2021")).year << endl;
     cout << "leapYear(d):                " << leapYear(d)                << endl;
     cout << "isValidDate(d):             " << isValidDate(d)             << endl;
     Date d1 = {26, OCTOBER, 2010};
     Date d2 = {26, OCTOBER, 2001};
     cout << "getDifference(d1, d2):      " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):      " << getDifference(d2, d1)      << endl;
-    */
+
 
 
 
