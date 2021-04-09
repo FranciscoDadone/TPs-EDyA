@@ -22,7 +22,7 @@ int main()
 
 
     // ## EJERCICIO 2 ## //
-    /*
+
     Date d = {29, FEBRUARY, 2000};
     cout << "to_str(d):                  " << to_str(d)                  << endl;
     cout << "to_date('11/10/2020').year: " << to_date("11/10/2020").year << endl;
@@ -32,7 +32,7 @@ int main()
     Date d2 = {26, OCTOBER, 2001};
     cout << "getDifference(d1, d2):      " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):      " << getDifference(d2, d1)      << endl;
-    */
+
 
 
 
@@ -97,7 +97,7 @@ int main()
 
 
     // ## EJERCICIO 6 ## //
-
+    /*
     Card * deck = initCards();
     for(char cardNumber = 0; cardNumber < 52; cardNumber++) {
         cout << "Number: "   << (unsigned int)cardNumber             <<
@@ -106,7 +106,7 @@ int main()
                 " | Value: " << (unsigned int)deck[cardNumber].value << endl;
     }
     cout << "Size of Card: " << sizeof(Card) << endl;
-
+    */
     //cout << (deck[0].color == BLACK) << endl;
 
     return 0;

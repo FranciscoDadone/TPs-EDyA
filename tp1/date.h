@@ -4,25 +4,13 @@
 #include <math.h>
 
 enum Month {
-    _NULL     = 0,
-    JANUARY   = 1,
-    FEBRUARY  = 2,
-    MARCH     = 3,
-    APRIL     = 4,
-    MAY       = 5,
-    JUNE      = 6,
-    JULY      = 7,
-    AUGUST    = 8,
-    SEPTEMBER = 9,
-    OCTOBER   = 10,
-    NOVEMBER  = 11,
-    DECEMBER  = 12
+    _NULL, JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
 };
 
 struct Date {
-    int day     = 1;
+    unsigned char day     = 1;
     Month month = JANUARY;
-    int year    = 1970;
+    unsigned int year    = 1970;
 };
 
 
@@ -77,11 +65,88 @@ char* to_str(Month m) {
 }
 
 Month to_month(unsigned short m) {
-    if(m >= 1 && m <= 12) {
+    if(m >= 1 && m <= 12)
         return (Month)m;
-    }
     return (Month)NULL;
 }
+
+/**
+* @brief Devuelve una fecha a partir de una cadena de caracteres
+* de formato dd/mm/yyyy
+* @return Date
+*/
+Date to_date(char *str) {
+    if(str == NULL)
+        return {0, _NULL, 0};
+    unsigned int day, month, j = 0;
+    char year[5];
+
+    for(unsigned int i = 0; i <= 9; i++) {
+        if(i == 0 || i == 1) { // days pos
+            if(i == 0) {
+                day = (str[i] - '0') * 10;
+            } else {
+                day += (str[i] - '0');
+            }
+        } else if(i == 3 || i == 4) { // month pos
+            if(i == 3) {
+                month = (str[i] - '0') * 10;
+            } else {
+                month += (str[i] - '0');
+            }
+        } else if(i >= 6) {
+            year[j] = str[i];
+            j++;
+        }
+    }
+    int y = 0, k = 3;
+    for(char n: year) {
+        if((n - '0') >= 0 && (n - '0') <= 9) {
+            y += (unsigned int)(n - '0') * pow(10, k);
+            k--;
+        }
+    }
+    return {day, to_month(month), y};
+}
+
+/**
+* @brief Retorna si es año bisiesto
+* @param d
+*/
+bool leapYear(Date d) {
+    return (d.year % 4 == 0 && d.year % 100 != 0 || d.year % 400 == 0);
+}
+
+/**
+* @brief Retorna true si una fecha es correcta
+* @return bool
+*/
+bool isValidDate(Date date) {
+    if(date.year >= 1 && date.year <= 9999) {
+        if(date.month <= 12 && date.month >= 1) {
+            switch(date.month) {
+            case JANUARY :
+            case MARCH   :
+            case MAY     :
+            case AUGUST  :
+            case OCTOBER :
+            case DECEMBER:
+                if(date.day <= 31 && date.day >= 1) {return true;} break;
+            case FEBRUARY:
+                if(leapYear(date) && (date.day <= 29 && date.day >= 1)) {return true;}
+                else if(!leapYear(date) && (date.day <= 28 && date.day >= 1)) {return true;} break;
+            case APRIL    :
+            case JUNE     :
+            case JULY     :
+            case SEPTEMBER:
+            case NOVEMBER :
+                if(date.day <= 30 && date.day >= 1) {return true;} break;
+            }
+        }
+    }
+    return false;
+}
+
 
 /**
 * @brief Convierte un Date en una cadena con el formato dd/mm/yyyy
@@ -89,6 +154,8 @@ Month to_month(unsigned short m) {
 * @return char *
 */
 char* to_str(Date d) {
+    if(!isValidDate(d))
+        return NULL;
 
     char* str = (char*)malloc(10);
 
@@ -140,82 +207,6 @@ char* to_str(Date d) {
     return str;
 }
 
-/**
-* @brief Devuelve una fecha a partir de una cadena de caracteres
-* de formato dd/mm/yyyy
-* @return Date
-*/
-Date to_date(char *str) {
-    if(str == NULL)
-        return (Date){NULL, _NULL, NULL};
-    unsigned int day, month, j = 0;
-    char year[5];
-
-    for(unsigned int i = 0; i <= 9; i++) {
-        if(i == 0 || i == 1) { // days pos
-            if(i == 0) {
-                day = (str[i] - '0') * 10;
-            } else {
-                day += (str[i] - '0');
-            }
-        } else if(i == 3 || i == 4) { // month pos
-            if(i == 3) {
-                month = (str[i] - '0') * 10;
-            } else {
-                month += (str[i] - '0');
-            }
-        } else if(i >= 6) {
-            year[j] = str[i];
-            j++;
-        }
-    }
-    int y = 0, k = 3;
-    for(char n: year) {
-        if((n - '0') >= 0 && (n - '0') <= 9) {
-            y += (unsigned int)(n - '0') * pow(10, k);
-            k--;
-        }
-    }
-    return (Date){day, to_month(month), y};
-}
-
-/**
-* @brief Retorna si es año bisiesto
-* @param d
-*/
-bool leapYear(Date d) {
-    return (d.year % 4 == 0 && d.year % 100 != 0 || d.year % 400 == 0);
-}
-
-/**
-* @brief Retorna true si una fecha es correcta
-* @return bool
-*/
-bool isValidDate(Date date) {
-    if(date.year >= 1 && date.year <= 9999) {
-        if(date.month <= 12 && date.month >= 1) {
-            switch(date.month) {
-            case JANUARY :
-            case MARCH   :
-            case MAY     :
-            case AUGUST  :
-            case OCTOBER :
-            case DECEMBER:
-                if(date.day <= 31 && date.day >= 1) {return true;} break;
-            case FEBRUARY:
-                if(leapYear(date) && (date.day <= 29 && date.day >= 1)) {return true;}
-                else if(!leapYear(date) && (date.day <= 28 && date.day >= 1)) {return true;} break;
-            case APRIL    :
-            case JUNE     :
-            case JULY     :
-            case SEPTEMBER:
-            case NOVEMBER :
-                if(date.day <= 30 && date.day >= 1) {return true;} break;
-            }
-        }
-    }
-    return false;
-}
 
 unsigned int dayOfYear(Date d) {
     unsigned int leapYearCal   [] = {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
@@ -229,9 +220,6 @@ unsigned int dayOfYear(Date d) {
 
 
 int getDifference(Date dt1, Date dt2) {
-
-    // diferencia entre las fechas multiplicando por 1k los años, 100 los meses, 10 los años y restando las 2.
-
     int  diff   = 0;
     char symbol = 1;
     Date MinYear, MaxYear, MinMonth, MaxMonth, MinDay, MaxDay;
