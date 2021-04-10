@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 1
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef BITFIELDSEXAMPLE_H_INCLUDED
 #define BITFIELDSEXAMPLE_H_INCLUDED
 

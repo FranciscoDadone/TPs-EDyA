@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 1
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #include <iostream>
 #include <math.h>
 #include "date.h"
@@ -98,23 +107,6 @@ int main()
 
 
     // ## EJERCICIO 5 ## //
-    /****************************************************************************************
-     Un campo de bits es una estructura o unión en la cual se reduce la cantidad de bits
-     que ocupan sus miembros. Estos nos ayudan a especificiar cuantos bits necesitamos que
-     una variable almacene, por ejemplo, normalmente creamos variables que son de 8, 16,
-     32, 64 bits, pero a lo mejor solo necesitamos 3 bits de esa variable. Un campo de bits
-     nos deja especificar cuantos exactamente una variable va a necesitar.
-
-    # Desventajas : hay cosas que dependen mucho de los compiladores que se usen, como por
-      ejemplo sumar 1 a un unsigned char de x bits. Y otros problemas como que si hay un
-      overflow está todo en manos del compilador, etc... También al utilizar campos de bits,
-      el compilador tiene que trabajar más por lo tanto se pierde velocidad de ejecución.
-
-    # Ventajas : son más conservadores en el uso de la ram. Si se quiere mandar paquetes por
-      la red, es otra forma de economizar en el peso.
-    *****************************************************************************************/
-
-    // Ejemplo de bit fields
 
     /*
     #include "bitFieldsExample.h"
