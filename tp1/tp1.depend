@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1617984833 source:/home/franciscodadone/Desktop/Facultad/EDyA/tp1/main.cpp
+1618016040 source:/home/franciscodadone/Desktop/Facultad/EDyA/tp1/main.cpp
 	<iostream>
 	<math.h>
 	"date.h"
@@ -7,11 +7,11 @@
 	"word.h"
 	"bitFieldsExample.h"
 
-1617984625 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/date.h
+1618015244 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/date.h
 
 1617979910 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/word.h
 
 1617983992 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/bitFieldsExample.h
 
-1617985030 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/card.h
+1617985073 /home/franciscodadone/Desktop/Facultad/EDyA/tp1/card.h
 

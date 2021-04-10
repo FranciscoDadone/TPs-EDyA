@@ -49,32 +49,30 @@ Month to_month(unsigned short m) {
 * @return Date
 */
 // Como en ascii el '0' es el 48, le podemos restar directamente '0' para convertirlo a int.
-Date to_date(char *str) {       // se puede hacer muchísimo más fácil esta función con la librería string,
-    if(str == nullptr)             // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
-        return {0, _NULL, 0};
-    unsigned char day, month;
-    char year[5];
-
-    for(unsigned short int i = 0; i <= 9; i++) {
-        if(i == 0 || i == 1) {                  // days position
-            if(i == 0) day = (str[i] - '0') * 10;
-            else       day += (str[i] - '0');
-        } else if(i == 3 || i == 4) {           // month position
-            if(i == 3) month = (str[i] - '0') * 10;
-            else       month += (str[i] - '0');
-        } else if(i >= 6) {                     // year position
-            year[i - 6] = str[i];
+Date to_date(char *str) {          // Se puede hacer muchísimo más fácil esta función con la librería string,
+    short int c = 0;               // pero tuve en cuenta que en este tp todavia "no sabemos" usarla.
+    unsigned short int d, m, y;
+    for(;*str != '\0'; str++) {
+        if(*str != '/') {
+            switch(c) {
+                case(0):
+                    d *= 10;
+                    d += *str - 48;
+                break;
+                case(1):
+                    m *= 10;
+                    m += *str - 48;
+                break;
+                case(2):
+                    y *= 10;
+                    y += *str - 48;
+                break;
+            }
         }
+        else c++;
     }
-    unsigned short int y = 0, k = 3;
-    for(char n: year) {
-        n -= '0';
-        if((n) >= 0 && (n) <= 9) {
-            y += (unsigned short int)((unsigned short int)(n) * pow(10, k));
-            k--;
-        }
-    }
-    return {day, to_month(month), y};
+    Date ret = {d, Month(m), y};
+    return ret;
 }
 
 /**

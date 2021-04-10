@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/bitFieldsExample.h
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/card.h
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/date.h
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/main.cpp
+iostream
+-
+math.h
+-
+date.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/date.h
+card.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/card.h
+word.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/word.h
+bitFieldsExample.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/bitFieldsExample.h
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp1/word.h
+

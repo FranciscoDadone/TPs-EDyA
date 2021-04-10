@@ -21,6 +21,7 @@ int main()
 
 
     // ## EJERCICIO 2 ## //
+
     /*
     Date d = {29, FEBRUARY, 2020};
     cout << "to_str(d):                   " << to_str(d)                  << endl;
@@ -34,6 +35,8 @@ int main()
     cout << "getDifference(d1, d2):       " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):       " << getDifference(d2, d1)      << endl;
     */
+
+
 
 
     // ## EJERCICIO 3 ## //
@@ -52,8 +55,13 @@ int main()
     cout << endl << endl << "&w: " << &w << endl;
     cout << "sizeof(w): " << sizeof(w) << " bytes" << endl;
     */
-    // La relación que hay entre las direcciones de memoria de la estructura es que todas empiezan igual (están en el mismo sector) y solo varían los 2 últimos dígitos en el hex. Osea, se encuentran definidos en memoria de forma conjunta y ordenada a como fueron definidos.
 
+    /*
+        La relación que hay entre las direcciones de memoria de la estructura es
+        que todas empiezan igual (están en el mismo sector) y solo varían los 2
+        últimos dígitos en el hex. Osea, se encuentran definidos en memoria de
+        forma conjunta y ordenada a como fueron definidos.
+    */
 
 
 
@@ -77,11 +85,11 @@ int main()
 
     /****************************************************************************************
      # Comentar: ¿Cómo se pueden hacer distintos ordenamientos sin modificar el arreglo original y
-     sin crear una copia completa de la estructura (“no programar”)?
+       sin crear una copia completa de la estructura (“no programar”)?
      * Rta: Para no modificar el arreglo original se puede hacer una copia del mismo. En esa copia
-     para no crear una copia completa de la estructura, se puede verificar cada campo (dia, mes año)
-     y si coinciden los días y los meses, se puede ingresar a la dirección de memoria de los años y
-     cambiar solo el valor de los años sin tener que copiar toda la estructura completa.
+       para no crear una copia completa de la estructura, se puede verificar cada campo (dia, mes año)
+       y si coinciden los días y los meses, se puede ingresar a la dirección de memoria de los años y
+       cambiar solo el valor de los años sin tener que copiar toda la estructura completa.
      # Ej: 10/10/2001
          10/10/2020
      Sólo se copiarían los años sin tener que copiar la estructura (Date) completa.
@@ -91,17 +99,19 @@ int main()
 
     // ## EJERCICIO 5 ## //
     /****************************************************************************************
-     Los campos de bits nos ayudan a especificiar cuantos bits necesitamos que una variable
-     almacene, por ejemplo, normalmente creamos variables que son de 8, 16, 32, 64 bits,
-     pero a lo mejor solo necesitamos 3 bits de esa variable. Un campo de bits nos deja
-     especificar cuantos exactamente una variable va a necesitar.
+     Un campo de bits es una estructura o unión en la cual se reduce la cantidad de bits
+     que ocupan sus miembros. Estos nos ayudan a especificiar cuantos bits necesitamos que
+     una variable almacene, por ejemplo, normalmente creamos variables que son de 8, 16,
+     32, 64 bits, pero a lo mejor solo necesitamos 3 bits de esa variable. Un campo de bits
+     nos deja especificar cuantos exactamente una variable va a necesitar.
 
     # Desventajas : hay cosas que dependen mucho de los compiladores que se usen, como por
-    ejemplo sumar 1 a un unsigned char de x bits. Y otros problemas como que si hay un
-    overflow está todo en manos del compilador, etc...
+      ejemplo sumar 1 a un unsigned char de x bits. Y otros problemas como que si hay un
+      overflow está todo en manos del compilador, etc... También al utilizar campos de bits,
+      el compilador tiene que trabajar más por lo tanto se pierde velocidad de ejecución.
 
-    # Ventajas : son más conservadores en el uso de la ram. Si se quiere mandar paquete por
-    la red, es otra forma de economizar en el peso.
+    # Ventajas : son más conservadores en el uso de la ram. Si se quiere mandar paquetes por
+      la red, es otra forma de economizar en el peso.
     *****************************************************************************************/
 
     // Ejemplo de bit fields
@@ -123,5 +133,7 @@ int main()
     }
     cout << "Size of struct Card: " << sizeof(Card) << " bytes" << endl;
     */
+
+
     return 0;
 }
