@@ -30,7 +30,7 @@ bool palindrome(const string& str) {
 vector<unsigned int> create(unsigned int N, unsigned int from, unsigned int to) {
     vector<unsigned int> v;
     while(N != 0) {
-        v.push_back(rand() % (to - from + 1) + from);
+        v.push_back(rand() % ((to - from) + 1) + from);
         N--;
     }
     return v;
@@ -60,20 +60,33 @@ void sort(vector<unsigned int> &v) {
 
 vector<unsigned int> insert(vector<unsigned int> v1, vector<unsigned int> v2, unsigned int pos) {
     vector<unsigned int> merged;
+    if(!v1.size()) return merged;
 
-    bool t = false;
-    for(int i = 0; i < ((v1.size() + v2.size()) - 1); i++) {
-        if(i == pos) t = true;
+    bool cpyV2 = false;
+    unsigned int v2VectorIndex = 0,
+                 v1VectorIndex = 0;
+    for(unsigned int i = 0; i < (unsigned int)(v1.size() + v2.size()); i++) {
+        if(i == pos) cpyV2 = true;
 
-        if(t) {
-            merged.push_back(v2.at(i-pos));
-        }
-
-        if(v2.size() > (i-pos)) t = false;
+        merged.push_back((cpyV2 && v2VectorIndex < v2.size()) ?
+                         v2.at(v2VectorIndex) : v1.at(v1VectorIndex));
+        if(cpyV2 && v2VectorIndex < v2.size()) v2VectorIndex++;
+        else                                   v1VectorIndex++;
     }
-
     return merged;
+}
 
+void print_frequency(vector<unsigned int> v) {
+    vector<unsigned int> numbers;
+    for(unsigned int i = 0; i < v.size(); i++) {
+        unsigned int ocurr = 0;
+        for(unsigned int j = i; j < v.size(); j++)
+            if(v.at(i) == v.at(j)) ocurr++;
+        if(!count(numbers.begin(), numbers.end(), v.at(i))) {
+            cout << v.at(i) << " : " << ocurr << endl;
+            numbers.push_back(v.at(i));
+        }
+    }
 }
 
 #endif // EDYA2_H_INCLUDED
