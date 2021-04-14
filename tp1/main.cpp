@@ -100,7 +100,7 @@ int main()
        y si coinciden los días y los meses, se puede ingresar a la dirección de memoria de los años y
        cambiar solo el valor de los años sin tener que copiar toda la estructura completa.
      # Ej: 10/10/2001
-         10/10/2020
+           10/10/2020
      Sólo se copiarían los años sin tener que copiar la estructura (Date) completa.
     *****************************************************************************************/
 

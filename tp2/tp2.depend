@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1618358342 source:/home/franciscodadone/Desktop/Facultad/EDyA/tp2/main.cpp
+	<iostream>
+	<string>
+	"edya2.h"
+
+1618358419 /home/franciscodadone/Desktop/Facultad/EDyA/tp2/edya2.h
+	<stack>
+
