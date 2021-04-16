@@ -1,5 +1,5 @@
 /*************************
-    Trabajo Práctico 1
+    Trabajo Práctico 2
     Grupo: 9
 
     Julian Cordoba
@@ -35,7 +35,7 @@ int main()
     */
     // ################# Ejercicio 3 ################### //
     /*
-    cout << replaceAll("supercalifragilisticoespialidoso","li","da") << endl;
+    cout << replaceAll("supercalifragilisticoespialidoso","li","la") << endl;
     */
     // ################# Ejercicio 4 ################### //
     /*
