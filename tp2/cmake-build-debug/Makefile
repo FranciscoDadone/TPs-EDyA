@@ -67,10 +67,10 @@ RM = /snap/clion/149/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp1
+CMAKE_SOURCE_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp1/cmake-build-debug
+CMAKE_BINARY_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp1/cmake-build-debug/CMakeFiles /home/franciscodadone/Desktop/Facultad/EDyA/tp1/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp2/cmake-build-debug/CMakeFiles /home/franciscodadone/Desktop/Facultad/EDyA/tp2/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,17 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tp1
+# Target rules for targets named tp2
 
 # Build rule for target.
-tp1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tp1
-.PHONY : tp1
+tp2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tp2
+.PHONY : tp2
 
 # fast build rule for target.
-tp1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp1.dir/build.make CMakeFiles/tp1.dir/build
-.PHONY : tp1/fast
+tp2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp2.dir/build.make CMakeFiles/tp2.dir/build
+.PHONY : tp2/fast
 
 main.o: main.cpp.o
 
@@ -148,7 +148,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp1.dir/build.make CMakeFiles/tp1.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp2.dir/build.make CMakeFiles/tp2.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -157,7 +157,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp1.dir/build.make CMakeFiles/tp1.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp2.dir/build.make CMakeFiles/tp2.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -166,7 +166,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp1.dir/build.make CMakeFiles/tp1.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp2.dir/build.make CMakeFiles/tp2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -177,7 +177,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... tp1"
+	@echo "... tp2"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

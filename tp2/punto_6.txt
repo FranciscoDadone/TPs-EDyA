@@ -1,0 +1,6 @@
+
+Ejercicio 6: tres aplicaciones de la vida real donde se usen filas.
+
+1. Fila de un supermercado: Las personas entran a la fila por atrás y salen por la caja.
+2. Peaje: Los autos entran al peaje, pagan y salen por la barrera.
+3. Canaleta de cancha de bolos: Tiras la bola y vuelve por la canaleta en orden.

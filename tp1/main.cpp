@@ -31,7 +31,7 @@ int main()
 
     // ## EJERCICIO 2 ## //
 
-    /*
+
     Date d = {29, FEBRUARY, 2020};
     cout << "to_str(d):                   " << to_str(d)                  << endl;
     cout << "to_date('11/10/2021').day:   " << to_date((char*)("11/10/2021")).day   << endl;
@@ -43,7 +43,7 @@ int main()
     Date d2 = {26, OCTOBER, 2001};
     cout << "getDifference(d1, d2):       " << getDifference(d1, d2)      << endl;
     cout << "getDifference(d2, d1):       " << getDifference(d2, d1)      << endl;
-    */
+
 
 
 

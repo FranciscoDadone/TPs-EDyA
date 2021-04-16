@@ -166,6 +166,7 @@ int getDifference(Date dt1, Date dt2) {
         }
 
         auto d = (short int)(dayOfYear(dt1) - dayOfYear(dt2));
+        //auto d = (short int)(dayOfYear(MinYear) - dayOfYear(MaxYear));
         return (diff += d) * ((d < 0 || dt1.year > dt2.year) ? -1 : 1);
     }
     return 0;

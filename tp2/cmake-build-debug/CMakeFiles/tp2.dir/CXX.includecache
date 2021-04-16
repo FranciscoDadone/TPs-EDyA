@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp2/edya2.h
+stack
+-
+vector
+-
+
+/home/franciscodadone/Desktop/Facultad/EDyA/tp2/main.cpp
+iostream
+-
+string
+-
+algorithm
+-
+queue
+-
+edya2.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp2/edya2.h
+
