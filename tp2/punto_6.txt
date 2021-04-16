@@ -1,3 +1,11 @@
+/*************************
+    Trabajo Práctico 1
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
 
 Ejercicio 6: tres aplicaciones de la vida real donde se usen filas.
 
