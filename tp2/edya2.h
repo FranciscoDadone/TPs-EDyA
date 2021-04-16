@@ -17,7 +17,7 @@ using namespace std;
 
 bool palindrome(const string& str);
 
-//########### Ejercicio 1 #############
+// ## EJERCICIO 1 ## //
 void metodo_at(const string& str){
     for (char i: str) cout << i << " ";
 }
@@ -31,14 +31,14 @@ void bucle_rang(const string& str) {
     for(char j: str) cout << j << " ";
 }
 
-//########### Ejercicio 2 #############
+// ## EJERCICIO 2 ## //
 string palindromePyramid(const string& str) {
-    string ret;
     if(!palindrome(str)) return "No es palíndromo.";
 
     int sav = (str.length() % 2 != 0) ? (str.length() / 2) : ((str.length() / 2) - 1),
         j = (str.length() % 2 != 0) ? 1 : 2;
 
+    string ret;
     for(int i = sav; i >= 0; i--) { //genero el nuevo string
         ret.append(i, ' ');
         ret += str.substr(i, j) + "\n";
@@ -47,7 +47,7 @@ string palindromePyramid(const string& str) {
     return ret;
 }
 
-//########### Ejercicio 3 #############
+// ## EJERCICIO 3 ## //
 string replaceAll(const string& str, const string& from, const string& to){
     if(from.empty()) return str;
     string ret;
