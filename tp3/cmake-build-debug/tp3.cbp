@@ -85,6 +85,9 @@
 		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/main.cpp">
 			<Option target="tp3"/>
 		</Unit>
+		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/point.h">
+			<Option target="tp3"/>
+		</Unit>
 		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
