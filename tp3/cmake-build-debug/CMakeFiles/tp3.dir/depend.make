@@ -3,4 +3,5 @@
 
 CMakeFiles/tp3.dir/main.cpp.o: ../main.cpp
 CMakeFiles/tp3.dir/main.cpp.o: ../point.h
+CMakeFiles/tp3.dir/main.cpp.o: ../polygon.h
 
