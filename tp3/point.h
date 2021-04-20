@@ -21,7 +21,10 @@ public:
     void setX(int x);
     void setY(int y);
 
-
+    // Operator
+    friend std::ostream& operator<<(std::ostream& out, Point p) {
+        return out << "(" << p.getX() << ", " << p.getY() << ")";
+    }
 
 private:
     int x, y;
@@ -37,7 +40,6 @@ int Point::getY() { return this -> y; }
 // Setters
 void Point::setX(int x) { this -> x = x; }
 void Point::setY(int y) { this -> y = y; }
-
 
 
 

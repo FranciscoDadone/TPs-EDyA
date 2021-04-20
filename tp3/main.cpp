@@ -26,7 +26,7 @@ int main() {
 
     Polygon c = a+b;
 
-    cout << c.getPoints().at(1).getX() << endl;
+    cout << c.getPoints().at(1) << endl;
 
 
     return 0;

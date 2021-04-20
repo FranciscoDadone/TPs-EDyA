@@ -13,9 +13,9 @@ public:
     Polygon() { /*this -> points = getDefaultPolygon();*/ }
     Polygon(vector<Point> points) {
         if(isValidPolygon(points)) this -> points = points;
-        else this -> points = getDefaultPolygon();
-    }
-
+        else this -> points = getDefaultPolygon(); // Si el poligono es inválido se debería de tirar
+    }                                              // una excepción, pero como no está contemplado en
+                                                   // el curso, generé un poligono por defecto.
     // Operators
     Polygon operator+ (Polygon polygon) {
         if(this->points.size() != polygon.points.size()) return polygon;
