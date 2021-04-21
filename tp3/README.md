@@ -1,9 +1,10 @@
 # Documentación
 
-## Polygon
+## polygon.h
 #### Constructores
  - `Polygon()` Constructor por defecto: genera un polígino por defecto (un cuadrado de 1x1).
  - `Polygon(vector<Point>)` Constructor con parámetro: se le pasa un vector de puntos, este vector tiene que contener más de 3 puntos que no estén alineados ni sean los mismos para que se genere el polígino y no sea inválido. (Si el polígono es inválido se generará uno por defecto (Siguiendo con esto, en vez de generarse uno por defecto se debería de tirar una excepción pero consideré que en el curso todavía no vimos excepciones)).
+ - `Polygon(NULL)` Construye un polígono vacío.
 
 #### Métodos
  - `void addPoint(Point point)` Se usa para agregar un punto a un polígono.

@@ -14,7 +14,11 @@ public:
         if(isValidPolygon(points)) this -> points = points;
         else this -> points = getDefaultPolygon(); // Si el poligono es inválido se debería de tirar
     }                                              // una excepción, pero como no está contemplado en
-                                                   // el curso, generé un poligono por defecto.
+    Polygon(Polygon const &pol) {                  // el curso, generé un poligono por defecto.
+        this -> points = pol.points;
+    }
+    Polygon(int null) {if(null != NULL) this -> points = getDefaultPolygon(); }
+
     // Operators
     Polygon operator + (Polygon polygon) {
         if(this -> points.size() != polygon.points.size()) return polygon;
@@ -74,7 +78,7 @@ public:
         }
         return true;
     }
-    friend std::ostream& operator << (std::ostream& out, Polygon p) {
+    friend std::ostream& operator << (std::ostream& out, Polygon &p) {
         out << "{";
         for(unsigned short int i = 0; i < p.getPoints().size(); i++) {
             out << p.getPoints().at(i);
@@ -84,13 +88,12 @@ public:
         return out;
     }
 
-
     // Methods implementation
     void addPoint(Point point);
     vector<Point> getPoints();
     Point getPoint(unsigned short int index);
     bool setPoint(unsigned short int index, Point point);
-    bool removePoint(unsigned short int index);
+    void removePoint(unsigned short int index);
     int getNumberOfPoints();
 
 private:
@@ -116,11 +119,8 @@ bool Polygon::setPoint(unsigned short int index, Point point) {
 }
 
 
-bool Polygon::removePoint(unsigned short int index) {
-    if((this -> points).size() > index && (this -> points).size() > 3) { // El programador no puede remover un punto para que el polígino quede como inválido
-        (this -> points).erase((this -> points).begin() + index);
-    }
-    return ((this -> points).size() > index && (this -> points).size() > 3); // returns true or false if the operation succeeded
+void Polygon::removePoint(unsigned short int index) {
+    (this -> points).erase((this -> points).begin() + index);
 }
 
 bool Polygon::isValidPolygon(vector<Point> points) {
@@ -131,8 +131,5 @@ bool Polygon::isValidPolygon(vector<Point> points) {
     return false;
 }
 vector<Point> Polygon::getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
-
-
-
 
 #endif //TP3_POLYGON_H

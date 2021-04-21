@@ -39,6 +39,8 @@ int main() {
         {1,3}
     }); // como es inválido, genera un polígono por defecto.
     cout << invalidPolygon << endl;
+    Polygon voidPolygon(NULL);
+    cout << voidPolygon << endl;
     */
     /*
     Polygon demo;
@@ -56,7 +58,7 @@ int main() {
     demo.setPoint(1, {0,0});
     cout << demo << endl;
     */
-
+    /*
     Polygon a({
         {10,20},
         {30,1},
@@ -77,6 +79,8 @@ int main() {
     cout << "a - b: " << (a - b) << endl;
     cout << "a * 2: " << (a * 2) << endl;
     cout << "b / 2: " << (b / 2) << endl;
+    */
+
 
     return 0;
 }
