@@ -10,16 +10,16 @@ public:
         this -> y = 0;
     }
 
-    Point(int x, int y) {
+    Point(double x, double y) {
         this -> x = x;
         this -> y = y;
     }
 
     // Methods implementation
-    int  getX();
-    int  getY();
-    void setX(int x);
-    void setY(int y);
+    double getX();
+    double getY();
+    void   setX(double x);
+    void   setY(double y);
 
     // Operator
     friend std::ostream& operator<<(std::ostream& out, Point p) {
@@ -27,19 +27,17 @@ public:
     }
 
 private:
-    int x, y;
+    double x, y;
 };
-
-
 
 // ## Methods ## //
 // Getters
-int Point::getX() { return this -> x; }
-int Point::getY() { return this -> y; }
+double Point::getX() { return this -> x; }
+double Point::getY() { return this -> y; }
 
 // Setters
-void Point::setX(int x) { this -> x = x; }
-void Point::setY(int y) { this -> y = y; }
+void Point::setX(double x) { this -> x = x; }
+void Point::setY(double y) { this -> y = y; }
 
 
 
