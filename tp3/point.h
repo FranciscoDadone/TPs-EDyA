@@ -51,8 +51,17 @@ public:
      * @param p
      * @return
      */
-    friend std::ostream& operator<<(std::ostream& out, Point p) {
+    friend std::ostream& operator << (std::ostream& out, Point p) {
         return out << "(" << p.getX() << ", " << p.getY() << ")";
+    }
+    /**
+     * Takes an input from the user and creates a new object.
+     * @param in
+     * @param p
+     * @return returns a Point.
+     */
+    friend std::istream& operator >> (std::istream& in, Point &p) {
+        return in >> p.x >> p.y;
     }
 
 private:

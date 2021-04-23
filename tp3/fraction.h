@@ -1,83 +1,138 @@
 using namespace std;
+
 template<class T>
-class Fraction{
-    public:
-    Fraction(){
-       this->num=0;
-       this->den=1;
+/**
+ * Class Fraction to manage a fractional number.
+ * @class Fraction
+ */
+class Fraction {
+public:
+    /**
+     * Constructors:
+     *   - Default: num = 0; den = 1;
+     *   - Parameterized: Takes the numerator and denominator and checks if the denominator is 0 or not.
+     *   - Copy: Copies another object to himself.
+     */
+    Fraction() {
+        this->num = 0;
+        this->den = 1;
     }
-    Fraction(T num,T den){
-        this->num=num;
-        this->den=(den==0?1:den);
+    Fraction(T num, T den) {
+        this->num = num;
+        this->den = (den ? den : 1);
     }
-    Fraction(const Fraction &f){
-        this->num=f.num;
-        this->den=f.den;
-    }
-    //en caso de que el nuevo valor no sea valido se mantiene el viejo
-    void setnum(T num){this->num=num;}
-    void setden(T den){
-        if(den!=0){
-            this->den=den;
-        }
-    }
-    T getnum(){return this->num;}
-    T getden(){return this->den;}
-    float toFloat(){
-        float ret;
-        ret=float(this->num)/float(this->den);
-        return ret;
-    }
-    bool simplify(){//se pueden usar el for o 3 ifs separados---------------------------------------
-        short int i;
-        for(i=2;i<6;i++){
-            if (this->num%i==0 && this->den%i==0){
-                return true;
-            }
-        }
-        return false;
-    }
-    string toString(){
-        string ret="";
-        ret+=to_string(this->num);
-        ret+='/';
-        ret+=to_string(this->den);
-        return ret;
-    }
-    Fraction operator *(const int i){
-        Fraction ret;
-        ret.num=this->num*i;
-        ret.den=this->den;
-        return ret;
-    }
-    Fraction operator *(const Fraction &f){
-        Fraction ret;
-        ret.num=this->num*f.num;
-        ret.den=this->den*f.den;
-        return ret;
-    }
-    Fraction operator -(const Fraction &f){
-        Fraction ret;
-        ret.den=(this->den)*(f.den);
-        ret.num=(this->num)*(f.den)-(f.num)*(this->den);
-        return ret;
-    }
-    Fraction operator +(const Fraction &f){
-        Fraction ret;
-        ret.den=(this->den)*(f.den);
-        ret.num=(this->num)*(f.den)+(f.num)*(this->den);
-        return ret;
-    }
-    Fraction operator /(const Fraction &f){
-        Fraction ret;
-        ret.num=(this->num)*(f.den);
-        ret.den=(this->den)*(f.num);
-        return ret;
-    }
-    friend ostream& operator<<(ostream &out,const Fraction &f){
-    return out<<f.num<<"/"<<f.den;
+    Fraction(const Fraction &f) {
+        this->num = f.num;
+        this->den = f.den;
     }
 
-    private:
-        T num,den;
+    /**
+     * Sets the numerator.
+     * @param num
+     */
+    void setNum(T num) { this->num = num; }
+    /**
+     * Sets the denominator.
+     * If it's 0, it returns the previous one.
+     * @param den
+     */
+    void setDen(T den) {
+        this->den = (den != 0) ? den : this->den;
+    }
+
+    /**
+     * Gets the numerator
+     * @return num
+     */
+    T getNum() { return this->num; }
+    /**
+     * Gets the denominator.
+     * @return den
+     */
+    T getDen() { return this->den; }
+
+    /**
+     * toFloat
+     * @return the number in float
+     */
+    float toFloat() {
+        return float(this->num) / float(this->den);
+    }
+
+    /**
+     * Simplifies the fraction if it's possible.
+     * @return bool if the operation succeeded.
+     */
+    bool simplify() {
+        bool canItBeSimplified = false;
+        for(short int i = 2; i < 6; i++){
+            if(this->num % i == 0 && this->den % i == 0) {
+                this->num /= i;
+                this->den /= i;
+                i = 1;
+                canItBeSimplified = true;
+            }
+        }
+        return canItBeSimplified;
+    }
+    /**
+     * Converts the fraction to string.
+     * @return
+     */
+    string toString() {
+        return to_string(this->num) + "/" + to_string(this->den);
+    }
+
+    /**
+     * Multiply by int
+     * @param i
+     * @return Object
+     */
+    Fraction operator * (const int i) {
+        return { this->num * i, this->den };
+    }
+    /**
+     * Multiply by another fraction.
+     * @param f
+     * @return Object
+     */
+    Fraction operator * (const Fraction &f) {
+        return { (this->num * f.num), (this->den * f.den) };
+    }
+    /**
+     * Minus operator.
+     * @param f
+     * @return Object
+     */
+    Fraction operator - (const Fraction &f) {
+        return { (this->num) * (f.den) - (f.num) * (this->den), (this->den) * (f.den) };
+    }
+    /**
+     * Plus operator.
+     * @param f
+     * @return Object
+     */
+    Fraction operator + (const Fraction &f) {
+        return { (this->num) * (f.den) + (f.num) * (this->den), (this->den) * (f.den) };
+    }
+    /**
+     * Divide operator.
+     * @param f
+     * @return Object
+     */
+    Fraction operator/(const Fraction &f) {
+        return { (this->num) * (f.den), (this->den) * (f.num) };
+    }
+    /**
+     * Outputs to console the fraction.
+     * @param out
+     * @param f
+     * @return out
+     */
+    friend ostream & operator << (ostream &out, Fraction f) {
+        return out << f.toString();
+    }
+
+private:
+    T num, den;
 };

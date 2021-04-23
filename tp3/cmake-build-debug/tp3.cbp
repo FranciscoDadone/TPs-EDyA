@@ -82,6 +82,15 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/counter.h">
+			<Option target="tp3"/>
+		</Unit>
+		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/fraction.h">
+			<Option target="tp3"/>
+		</Unit>
+		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/hour.h">
+			<Option target="tp3"/>
+		</Unit>
 		<Unit filename="/home/franciscodadone/Desktop/Facultad/EDyA/tp3/main.cpp">
 			<Option target="tp3"/>
 		</Unit>
