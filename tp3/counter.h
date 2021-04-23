@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 2
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef COUNTER_H_INCLUDED
 #define COUNTER_H_INCLUDED
 

@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 2
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef TP3_POLYGON_H
 #define TP3_POLYGON_H
 
@@ -27,7 +36,7 @@ public:
     Polygon(Polygon const &pol) {                  // el curso, generé un poligono por defecto.
         this -> points = pol.points;
     }
-    Polygon(int null) {if(null != NULL) this -> points = getDefaultPolygon(); }
+    Polygon(int null) { if(null != NULL) this -> points = getDefaultPolygon(); }
 
     // Operators
     /**
@@ -117,7 +126,7 @@ public:
      * @return bool
      */
     bool operator != (Polygon rhs) {
-        return !(*this == rhs);
+        return *this != rhs;
     }
     friend std::ostream& operator << (std::ostream& out, Polygon &p) {
         out << "{";
@@ -184,10 +193,10 @@ private:
      * @param points
      * @return bool
      */
-    bool isValidPolygon(std::vector<Point<T>> points) {
-        if(points.size() < 3) return false;
-        for(int i = 1; i < points.size(); i++) {
-            if(points.at(0).getX() != points.at(i).getX() && points.at(0).getY() != points.at(i).getY()) return true;
+    bool isValidPolygon(std::vector<Point<T>> v) {
+        if(v.size() < 3) return false;
+        for(int i = 1; i < v.size(); i++) {
+            if(v.at(0).getX() != v.at(i).getX() && v.at(0).getY() != v.at(i).getY()) return true;
         }
         return false;
     }

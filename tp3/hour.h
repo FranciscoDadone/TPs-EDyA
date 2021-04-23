@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 2
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 /**
  * Class Hour
  * @brief contains an hour value (hh:mm:ss)
@@ -23,8 +32,8 @@ public:
      * If the hour is invalid, it keeps the previous.
      * @param hora
      */
-    void setHora(short int hora) {
-        this->hora = (hora < 24 && hora >= 0) ? hora : this->hora;
+    void setHora(short int h) {
+        this->hora = (h < 24 && h >= 0) ? h : this->hora;
     }
 
     /**
@@ -32,8 +41,8 @@ public:
      * If the hour is invalid, it keeps the previous.
      * @param minuto
      */
-    void setMinuto(short int minuto) {
-        this->minuto = (minuto < 60 && minuto >= 0) ? minuto : this->minuto;
+    void setMinuto(short int m) {
+        this->minuto = (m < 60 && m >= 0) ? m : this->minuto;
     }
 
     /**
@@ -41,8 +50,8 @@ public:
      * If the hour is invalid, it keeps the previous.
      * @param segundo
      */
-    void setSegundo(short int segundo) {
-        this->segundo = (segundo < 60 && segundo >= 0) ? segundo : this->segundo;
+    void setSegundo(short int s) {
+        this->segundo = (s < 60 && s >= 0) ? s : this->segundo;
     }
 
     /**

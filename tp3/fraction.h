@@ -1,6 +1,16 @@
+/*************************
+    Trabajo Práctico 3
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 template<class T>
 /**
  * Class Fraction to manage a fractional number.
+ * DOUBLE || FLOAT || INT
  * @class Fraction
  */
 class Fraction {
@@ -28,14 +38,14 @@ public:
      * Sets the numerator.
      * @param num
      */
-    void setNum(T num) { this->num = num; }
+    void setNum(T newNum) { this->num = newNum; }
     /**
      * Sets the denominator.
      * If it's 0, it returns the previous one.
      * @param den
      */
-    void setDen(T den) {
-        this->den = (den != 0) ? den : this->den;
+    void setDen(T newDen) {
+        this->den = (newDen) ? newDen : this->den;
     }
 
     /**

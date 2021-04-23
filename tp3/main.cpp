@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 2
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #include <iostream>
 #include <chrono>
 #include "point.h"
@@ -88,6 +97,9 @@ int main() {
     Date c;
     cin >> c;
     cout << (c == b) << endl;
+    cout << (c != b) << endl;
+    cout << (c < b) << endl;
+    cout << (c > b) << endl;
 
 
     // # Ejercicio 6 # //

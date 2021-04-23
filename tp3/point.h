@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 2
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef TP3_POINT_H
 #define TP3_POINT_H
 
@@ -37,12 +46,12 @@ public:
      * Sets x from a parameter.
      * @param x
      */
-    void   setX(T x) { this -> x = x; }
+    void   setX(T newX) { this -> x = newX; }
     /**
      * Sets y from a parameter.
      * @param y
      */
-    void   setY(T y) { this -> y = y; }
+    void   setY(T newY) { this -> y = newY; }
 
     // Operator
     /**
