@@ -4,8 +4,6 @@
 #include "vector"
 #include "point.h"
 
-using namespace std;
-
 /**
  * Class to make a polygon based on a vector of points.
  * DOUBLE || FLOAT || INT - To define the vector of points.
@@ -22,7 +20,7 @@ public:
      *    - Null: if a polygon is initialized with Polygon(NULL) this generates a polygon without points.
      */
     Polygon() { this -> points = getDefaultPolygon(); }
-    Polygon(const vector<Point<T>> &points) {
+    Polygon(const std::vector<Point<T>> &points) {
         if(isValidPolygon(points)) this -> points = points;
         else this -> points = getDefaultPolygon(); // Si el poligono es inválido se debería de tirar
     }                                              // una excepción, pero como no está contemplado en
@@ -41,7 +39,7 @@ public:
      */
     Polygon operator + (Polygon polygon) {
         if(this -> points.size() != polygon.points.size()) return polygon;
-        vector<Point<T>> points;
+        std::vector<Point<T>> points;
         for(unsigned short int i = 0; i < this -> points.size(); i++) {
             points.push_back({
                 ((this -> points).at(i).getX() + polygon.points.at(i).getX()),
@@ -59,7 +57,7 @@ public:
     */
     Polygon operator - (Polygon polygon) {
         if(this -> points.size() != polygon.points.size()) return polygon;
-        vector<Point<T>> points;
+        std::vector<Point<T>> points;
         for(unsigned short int i = 0; i < this -> points.size(); i++) {
             points.push_back({
                 ((this -> points).at(i).getX() - polygon.points.at(i).getX()),
@@ -75,7 +73,7 @@ public:
      * @return returns another polygon with the multiplication.
      */
     Polygon operator * (T multiplier) {
-        vector<Point<T>> points;
+        std::vector<Point<T>> points;
         for(auto & point : this -> points) {
             points.push_back({
                 (point.getX() * multiplier),
@@ -91,7 +89,7 @@ public:
      * @return returns another polygon with the division.
      */
     Polygon operator / (T divisor) {
-        vector<Point<T>> points;
+        std::vector<Point<T>> points;
         for(auto & point : this -> points) {
             points.push_back({
                 (point.getX() / divisor),
@@ -136,7 +134,7 @@ public:
      * Get the vector of points
      * @return returns the vector of points
      */
-    vector<Point<T>> getPoints() { return (this -> points); }
+    std::vector<Point<T>> getPoints() { return (this -> points); }
     /**
      * Gets an specific point from an index.
      * @param index
@@ -176,7 +174,7 @@ public:
     }
 
 private:
-    vector<Point<T>> points;
+    std::vector<Point<T>> points;
 
     /**
      * Checks if a polygon is valid.
@@ -186,7 +184,7 @@ private:
      * @param points
      * @return bool
      */
-    bool isValidPolygon(vector<Point<T>> points) {
+    bool isValidPolygon(std::vector<Point<T>> points) {
         if(points.size() < 3) return false;
         for(int i = 1; i < points.size(); i++) {
             if(points.at(0).getX() != points.at(i).getX() && points.at(0).getY() != points.at(i).getY()) return true;
@@ -196,7 +194,7 @@ private:
     /**
      * @return returns a square (1x1).
      */
-    vector<Point<T>> getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
+    std::vector<Point<T>> getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
 };
 
 #endif //TP3_POLYGON_H

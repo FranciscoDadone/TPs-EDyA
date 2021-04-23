@@ -1,10 +1,11 @@
 #include <iostream>
+#include <chrono>
 #include "point.h"
 #include "polygon.h"
 #include "counter.h"
 #include "hour.h"
 #include "fraction.h"
-#include "string.h"
+#include "date.h"
 
 using namespace std;
 
@@ -78,7 +79,15 @@ int main() {
     cout << endl << g.toString();
     */
 
+    // # Ejercicio 5 # //
+    Date a("10/10/2001");
+    Date b("11/10/2001");
+    cout << (b<a) << endl;
+    cout << (b>a) << endl;
 
+    Date c;
+    cin >> c;
+    cout << (c == b) << endl;
 
 
     // # Ejercicio 6 # //

@@ -1,5 +1,3 @@
-using namespace std;
-
 template<class T>
 /**
  * Class Fraction to manage a fractional number.
@@ -79,7 +77,7 @@ public:
      * Converts the fraction to string.
      * @return
      */
-    string toString() {
+    std::string toString() {
         return to_string(this->num) + "/" + to_string(this->den);
     }
 
@@ -120,7 +118,7 @@ public:
      * @param f
      * @return Object
      */
-    Fraction operator/(const Fraction &f) {
+    Fraction operator / (const Fraction &f) {
         return { (this->num) * (f.den), (this->den) * (f.num) };
     }
     /**
@@ -129,7 +127,7 @@ public:
      * @param f
      * @return out
      */
-    friend ostream & operator << (ostream &out, Fraction f) {
+    friend std::ostream & operator << (std::ostream &out, Fraction f) {
         return out << f.toString();
     }
 

@@ -8,12 +8,22 @@
 
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/counter.h
 
+/home/franciscodadone/Desktop/Facultad/EDyA/tp3/date.h
+iomanip
+-
+ctime
+-
+cstdlib
+-
+
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/fraction.h
 
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/hour.h
 
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/main.cpp
 iostream
+-
+chrono
 -
 point.h
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/point.h
@@ -25,8 +35,8 @@ hour.h
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/hour.h
 fraction.h
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/fraction.h
-string.h
-/home/franciscodadone/Desktop/Facultad/EDyA/tp3/string.h
+date.h
+/home/franciscodadone/Desktop/Facultad/EDyA/tp3/date.h
 
 /home/franciscodadone/Desktop/Facultad/EDyA/tp3/point.h
 

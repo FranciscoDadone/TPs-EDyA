@@ -1,5 +1,3 @@
-using namespace std;
-
 /**
  * Class Hour
  * @brief contains an hour value (hh:mm:ss)
@@ -85,7 +83,7 @@ public:
      * @param c
      * @return out
      */
-    friend ostream &operator << (ostream &out, const Hour &c) {
+    friend std::ostream &operator << (std::ostream &out, const Hour &c) {
         return out << c.hora << ":" << c.minuto << ":" << c.segundo;
     }
     /**
