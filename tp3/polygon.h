@@ -6,11 +6,23 @@
 
 using namespace std;
 
+/**
+ * Class to make a polygon based on a vector of points.
+ * DOUBLE || FLOAT || INT - To define the vector of points.
+ * @class Polygon
+ */
+template <class T>
 class Polygon {
 public:
-    // Constructors
+    /**
+     * # Constructors
+     *    - Default: generates a default polygon (1x1 square).
+     *    - Parameterized: gets a vector of points and generates a polygon if it is valid. Refer to isValidPolygon().
+     *    - Copy: copies a polygon from parameter.
+     *    - Null: if a polygon is initialized with Polygon(NULL) this generates a polygon without points.
+     */
     Polygon() { this -> points = getDefaultPolygon(); }
-    Polygon(const vector<Point>& points) {
+    Polygon(const vector<Point<T>> &points) {
         if(isValidPolygon(points)) this -> points = points;
         else this -> points = getDefaultPolygon(); // Si el poligono es inválido se debería de tirar
     }                                              // una excepción, pero como no está contemplado en
@@ -20,9 +32,16 @@ public:
     Polygon(int null) {if(null != NULL) this -> points = getDefaultPolygon(); }
 
     // Operators
+    /**
+     * Adds two polygons of the same size.
+     * If the polygons are different sizes, it returns the right
+     * hand side polygon.
+     * @param polygon
+     * @return returns the addition.
+     */
     Polygon operator + (Polygon polygon) {
         if(this -> points.size() != polygon.points.size()) return polygon;
-        vector<Point> points;
+        vector<Point<T>> points;
         for(unsigned short int i = 0; i < this -> points.size(); i++) {
             points.push_back({
                 ((this -> points).at(i).getX() + polygon.points.at(i).getX()),
@@ -31,9 +50,16 @@ public:
         }
         return { points };
     }
+    /**
+    * Subtracts two polygons of the same size.
+    * If the polygons are different sizes, it returns the right
+    * hand side polygon.
+    * @param polygon
+    * @return returns the subtraction.
+    */
     Polygon operator - (Polygon polygon) {
         if(this -> points.size() != polygon.points.size()) return polygon;
-        vector<Point> points;
+        vector<Point<T>> points;
         for(unsigned short int i = 0; i < this -> points.size(); i++) {
             points.push_back({
                 ((this -> points).at(i).getX() - polygon.points.at(i).getX()),
@@ -42,8 +68,14 @@ public:
         }
         return { points };
     }
-    Polygon operator * (int multiplier) {
-        vector<Point> points;
+    /**
+     * Multiplies a polygon by an scalar.
+     * multiplier: INT || DOUBLE || FLOAT
+     * @param multiplier
+     * @return returns another polygon with the multiplication.
+     */
+    Polygon operator * (T multiplier) {
+        vector<Point<T>> points;
         for(auto & point : this -> points) {
             points.push_back({
                 (point.getX() * multiplier),
@@ -52,8 +84,14 @@ public:
         }
         return { points };
     }
-    Polygon operator / (int divisor) {
-        vector<Point> points;
+    /**
+     * Divides a polygon by an scalar.
+     * divisor: INT || DOUBLE || FLOAT
+     * @param divisor
+     * @return returns another polygon with the division.
+     */
+    Polygon operator / (T divisor) {
+        vector<Point<T>> points;
         for(auto & point : this -> points) {
             points.push_back({
                 (point.getX() / divisor),
@@ -62,21 +100,26 @@ public:
         }
         return { points };
     }
-    bool operator == (Polygon polygon) {
-        if(this -> points.size() != polygon.getPoints().size()) return false;
+    /**
+     * Checks if the rhs and lhs polygons are equal or not.
+     * @param rhs
+     * @return bool
+     */
+    bool operator == (Polygon rhs) {
+        if(this -> points.size() != rhs.getPoints().size()) return false;
         for(unsigned short int i = 0; i < this -> points.size(); i++) {
-            if(this -> points.at(i).getX() != polygon.getPoints().at(i).getX() ||
-               this -> points.at(i).getX() != polygon.getPoints().at(i).getX()) return false;
+            if(this -> points.at(i).getX() != rhs.getPoints().at(i).getX() ||
+               this -> points.at(i).getX() != rhs.getPoints().at(i).getX()) return false;
         }
         return true;
     }
-    bool operator != (Polygon polygon) {
-        if(this -> points.size() != polygon.getPoints().size()) return true;
-        for(unsigned short int i = 0; i < this -> points.size(); i++) {
-            if(this -> points.at(i).getX() == polygon.getPoints().at(i).getX() &&
-               this -> points.at(i).getX() == polygon.getPoints().at(i).getX()) return false;
-        }
-        return true;
+    /**
+     * Checks if the rhs and lhs polygons aren't equal.
+     * @param rhs
+     * @return bool
+     */
+    bool operator != (Polygon rhs) {
+        return !(*this == rhs);
     }
     friend std::ostream& operator << (std::ostream& out, Polygon &p) {
         out << "{";
@@ -88,48 +131,72 @@ public:
         return out;
     }
 
-    // Methods implementation
-    void addPoint(Point point);
-    vector<Point> getPoints();
-    Point getPoint(unsigned short int index);
-    bool setPoint(unsigned short int index, Point point);
-    void removePoint(unsigned short int index);
-    int getNumberOfPoints();
+    // # GETTERS # //
+    /**
+     * Get the vector of points
+     * @return returns the vector of points
+     */
+    vector<Point<T>> getPoints() { return (this -> points); }
+    /**
+     * Gets an specific point from an index.
+     * @param index
+     * @return returns a Point object.
+     */
+    Point<T> getPoint(unsigned short int index) { return (this -> points).at(index); }
+    /**
+     * @return returns the numbers of points of the polygon.
+     */
+    int getNumberOfPoints() { return (this -> points).size(); }
+
+    // # SETTERS # //
+    /**
+     * Adds a point to the end of the vector.
+     * @param point
+     */
+    void addPoint(Point<T> point) { points.push_back(point); }
+    /**
+     * Removes a point from the index passed by parameter.
+     * @param index
+     */
+    void removePoint(unsigned short int index) {
+        if(index >= this->getNumberOfPoints()) return;
+        (this -> points).erase((this -> points).begin() + index);
+    }
+    /**
+     * Adds a point to the points vector in the class.
+     * @param index
+     * @param point
+     * @return returns true or false if the operation succeeded.
+     */
+    bool setPoint(unsigned short int index, Point<T> point) {
+        if((this -> points).size() > index && (this -> points).size() >= 3) {
+            (this -> points).at(index) = point;
+        }
+        return ((this -> points).size() > index && (this -> points).size() > 3);
+    }
 
 private:
-    vector<Point> points;
-    // Methods implementation
-    bool isValidPolygon(vector<Point> points);
-    vector<Point> getDefaultPolygon();
+    vector<Point<T>> points;
+
+    /**
+     * Checks if a polygon is valid.
+     *  Checks:
+     *      - If the polygon has at least 3 points.
+     *      - If the points are not inline (the polygon has a shape and it isn't a straight line).
+     * @param points
+     * @return bool
+     */
+    bool isValidPolygon(vector<Point<T>> points) {
+        if(points.size() < 3) return false;
+        for(int i = 1; i < points.size(); i++) {
+            if(points.at(0).getX() != points.at(i).getX() && points.at(0).getY() != points.at(i).getY()) return true;
+        }
+        return false;
+    }
+    /**
+     * @return returns a square (1x1).
+     */
+    vector<Point<T>> getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
 };
-
-// ## Methods ## //
-// Getters
-vector<Point> Polygon::getPoints() { return (this -> points); }
-Point Polygon::getPoint(unsigned short int index) { return (this -> points).at(index); }
-int Polygon::getNumberOfPoints() { return (this -> points).size(); }
-
-// Setters
-void Polygon::addPoint(Point point) { points.push_back(point); }
-bool Polygon::setPoint(unsigned short int index, Point point) {
-    if((this -> points).size() > index && (this -> points).size() >= 3) {
-        (this -> points).at(index) = point;
-    }
-    return ((this -> points).size() > index && (this -> points).size() > 3); // returns true or false if the operation succeeded
-}
-
-
-void Polygon::removePoint(unsigned short int index) {
-    (this -> points).erase((this -> points).begin() + index);
-}
-
-bool Polygon::isValidPolygon(vector<Point> points) {
-    if(points.size() < 3) return false;
-    for(int i = 1; i < points.size(); i++) {
-        if(points.at(0).getX() != points.at(i).getX() && points.at(0).getY() != points.at(i).getY()) return true;
-    }
-    return false;
-}
-vector<Point> Polygon::getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
 
 #endif //TP3_POLYGON_H

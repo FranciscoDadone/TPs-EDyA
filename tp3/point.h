@@ -1,45 +1,62 @@
 #ifndef TP3_POINT_H
 #define TP3_POINT_H
 
+template <class T>
+/**
+ * Class to make a point.
+ * DOUBLE || FLOAT || INT
+ * @class Point
+ */
 class Point {
-
 public:
-    // Constructors
-    Point() {
-        this -> x = 0;
-        this -> y = 0;
-    }
-
-    Point(double x, double y) {
+    /**
+     * Constructor
+     * Default: x = y = 0
+     * @param x
+     * @param y
+     */
+    Point(T x = 0, T y = 0) {
         this -> x = x;
         this -> y = y;
     }
 
-    // Methods implementation
-    double getX();
-    double getY();
-    void   setX(double x);
-    void   setY(double y);
+    // ## Methods ## //
+    // Getters
+    /**
+     * Gets the x coordinate of a point.
+     * @return returns x
+     */
+    T      getX() { return this -> x; }
+    /**
+     * Gets the y coordinate of a point.
+     * @return returns y
+     */
+    T      getY() { return this -> y; }
+    // Setters
+    /**
+     * Sets x from a parameter.
+     * @param x
+     */
+    void   setX(T x) { this -> x = x; }
+    /**
+     * Sets y from a parameter.
+     * @param y
+     */
+    void   setY(T y) { this -> y = y; }
 
     // Operator
+    /**
+     * Outputs to console a given point.
+     * @param out
+     * @param p
+     * @return
+     */
     friend std::ostream& operator<<(std::ostream& out, Point p) {
         return out << "(" << p.getX() << ", " << p.getY() << ")";
     }
 
 private:
-    double x, y;
+    T x, y;
 };
-
-// ## Methods ## //
-// Getters
-double Point::getX() { return this -> x; }
-double Point::getY() { return this -> y; }
-
-// Setters
-void Point::setX(double x) { this -> x = x; }
-void Point::setY(double y) { this -> y = y; }
-
-
-
 
 #endif //TP3_POINT_H

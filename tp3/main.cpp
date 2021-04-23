@@ -8,24 +8,23 @@ int main() {
 
     // # Ejercicio 1 # //
     /*
-    Point a;
-    cout << a.getX() << " " << a.getY() << endl;
+    Point<int> a;
+    cout << a << endl;
     a.setX(10);
     a.setY(20);
-    cout << a.getX() << " " << a.getY() << endl;
+    cout << a << endl;
 
-    Point b(40,50);
-    cout << b.getX() << " " << b.getY() << endl;
+    Point<double> b(40,50);
+    cout << b << endl;
     */
-
 
     // # Ejercicio 2 # //
     /*
-    Polygon defaultConstructor;
+    Polygon<int> defaultConstructor;
     cout << defaultConstructor << endl;
     */
     /*
-    Polygon withPoints({
+    Polygon<int> withPoints({
         {1,1},
         {2, 3},
         {5, 9}
@@ -33,17 +32,17 @@ int main() {
     cout << withPoints << endl;
     */
     /*
-    Polygon invalidPolygon({
+    Polygon<int> invalidPolygon({
         {1,1},
         {1,2},
         {1,3}
     }); // como es inválido, genera un polígono por defecto.
     cout << invalidPolygon << endl;
-    Polygon voidPolygon(NULL);
+    Polygon<int> voidPolygon(NULL);
     cout << voidPolygon << endl;
     */
     /*
-    Polygon demo;
+    Polygon<int> demo;
     demo.addPoint({1,2});
     demo.addPoint({3,4});
     demo.addPoint({5,6});
@@ -59,14 +58,14 @@ int main() {
     cout << demo << endl;
     */
     /*
-    Polygon a({
+    Polygon<int> a({
         {10,20},
         {30,1},
         {99,7},
         {1,2},
         {4,3}
     });
-    Polygon b({
+    Polygon<int> b({
         {1,2},
         {3,1},
         {9,1},
@@ -75,12 +74,14 @@ int main() {
     });
     cout << "a:     " << a << endl;
     cout << "b:     " << b << endl;
-    cout << "a + b: " << (a + b) << endl;
-    cout << "a - b: " << (a - b) << endl;
-    cout << "a * 2: " << (a * 2) << endl;
-    cout << "b / 2: " << (b / 2) << endl;
+    Polygon<int> j = a + b;
+    cout << "a + b: " << j << endl;
+    j = a - b;
+    cout << "a - b: " << j << endl;
+    j = a * 2;
+    cout << "a * 2: " << j << endl;
+    j = a / 2;
+    cout << "b / 2: " << j << endl;
     */
-
-
     return 0;
 }
