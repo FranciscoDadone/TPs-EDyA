@@ -21,11 +21,7 @@ public:
      *   - Parameterized: Takes the numerator and denominator and checks if the denominator is 0 or not.
      *   - Copy: Copies another object to himself.
      */
-    Fraction() {
-        this->num = 0;
-        this->den = 1;
-    }
-    Fraction(T num, T den) {
+    Fraction(T num = 0, T den = 1) {
         this->num = num;
         this->den = (den ? den : 1);
     }

@@ -50,8 +50,6 @@ int main() {
     c3+=5;
     cout<<"C3 "<< c3;
     */
-
-
     // # Ejercicio 3 # //
     /*
     Hour x(21,30,29);
@@ -89,6 +87,7 @@ int main() {
     */
 
     // # Ejercicio 5 # //
+    /*
     Date a("10/10/2001");
     Date b("11/10/2001");
     cout << (b<a) << endl;
@@ -100,7 +99,7 @@ int main() {
     cout << (c != b) << endl;
     cout << (c < b) << endl;
     cout << (c > b) << endl;
-
+    */
 
     // # Ejercicio 6 # //
     /*
@@ -156,16 +155,19 @@ int main() {
         {1,4},
         {4,3}
     });
-    cout << "a:     " << a << endl;
-    cout << "b:     " << b << endl;
-    Polygon<int> j = a + b;
-    cout << "a + b: " << j << endl;
-    j = a - b;
-    cout << "a - b: " << j << endl;
-    j = a * 2;
-    cout << "a * 2: " << j << endl;
-    j = a / 2;
-    cout << "b / 2: " << j << endl;
+    cout << "a: " << a << endl;
+
+    Polygon<int> c({
+        {0,0},
+        {0,2},
+        {2,2},
+        {2,0}
+    });
+    cout << c.getArea() << endl;
+    cout << c.getPerimeter() << endl;
+    cout << c.getAngleSum() << endl;
+    cout << c.getNumberOfDiagonals() << endl;
     */
+
     return 0;
 }

@@ -22,9 +22,8 @@ public:
      *  - Copy: copies a counter from another
      *  - Parameterized: takes an int and stores it in count.
      */
-    Counter() { count = 0; }
     Counter(const Counter &c) { this -> count = c.count; }
-    Counter(const unsigned int &c) { this -> count = c; }
+    Counter(const unsigned int &c = 0) { this -> count = c; }
 
     // Operators
     /**

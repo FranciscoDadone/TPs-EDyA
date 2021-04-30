@@ -72,6 +72,38 @@ public:
     friend std::istream& operator >> (std::istream& in, Point &p) {
         return in >> p.x >> p.y;
     }
+    /**
+     * Plus operator
+     * @param rhs
+     * @return Point
+     */
+    Point<T> operator + (Point<T> rhs) {
+        return { this->x + rhs.getX(), this->y + rhs.getY() };
+    }
+    /**
+     * Minus operator
+     * @param rhs
+     * @return Point
+     */
+    Point<T> operator - (Point<T> rhs) {
+        return { this->x - rhs.getX(), this->y - rhs.getY() };
+    }
+    /**
+     * Multiply operator
+     * @param scalar
+     * @return Point
+     */
+    Point<T> operator * (double scalar) {
+        return { this->x * scalar, this->y * scalar };
+    }
+    /**
+     * Division operator
+     * @param scalar
+     * @return Point
+     */
+    Point<T> operator / (double scalar) {
+        return this * (1 / scalar);
+    }
 
 private:
     T x, y;

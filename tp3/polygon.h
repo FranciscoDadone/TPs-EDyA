@@ -12,6 +12,7 @@
 
 #include "vector"
 #include "point.h"
+#include <cmath>
 
 /**
  * Class to make a polygon based on a vector of points.
@@ -40,74 +41,6 @@ public:
 
     // Operators
     /**
-     * Adds two polygons of the same size.
-     * If the polygons are different sizes, it returns the right
-     * hand side polygon.
-     * @param polygon
-     * @return returns the addition.
-     */
-    Polygon operator + (Polygon polygon) {
-        if(this -> points.size() != polygon.points.size()) return polygon;
-        std::vector<Point<T>> points;
-        for(unsigned short int i = 0; i < this -> points.size(); i++) {
-            points.push_back({
-                ((this -> points).at(i).getX() + polygon.points.at(i).getX()),
-                ((this -> points).at(i).getY() + polygon.points.at(i).getY())
-            });
-        }
-        return { points };
-    }
-    /**
-    * Subtracts two polygons of the same size.
-    * If the polygons are different sizes, it returns the right
-    * hand side polygon.
-    * @param polygon
-    * @return returns the subtraction.
-    */
-    Polygon operator - (Polygon polygon) {
-        if(this -> points.size() != polygon.points.size()) return polygon;
-        std::vector<Point<T>> points;
-        for(unsigned short int i = 0; i < this -> points.size(); i++) {
-            points.push_back({
-                ((this -> points).at(i).getX() - polygon.points.at(i).getX()),
-                ((this -> points).at(i).getY() - polygon.points.at(i).getY())
-            });
-        }
-        return { points };
-    }
-    /**
-     * Multiplies a polygon by an scalar.
-     * multiplier: INT || DOUBLE || FLOAT
-     * @param multiplier
-     * @return returns another polygon with the multiplication.
-     */
-    Polygon operator * (T multiplier) {
-        std::vector<Point<T>> points;
-        for(auto & point : this -> points) {
-            points.push_back({
-                (point.getX() * multiplier),
-                (point.getY() * multiplier)
-            });
-        }
-        return { points };
-    }
-    /**
-     * Divides a polygon by an scalar.
-     * divisor: INT || DOUBLE || FLOAT
-     * @param divisor
-     * @return returns another polygon with the division.
-     */
-    Polygon operator / (T divisor) {
-        std::vector<Point<T>> points;
-        for(auto & point : this -> points) {
-            points.push_back({
-                (point.getX() / divisor),
-                (point.getY() / divisor)
-            });
-        }
-        return { points };
-    }
-    /**
      * Checks if the rhs and lhs polygons are equal or not.
      * @param rhs
      * @return bool
@@ -128,6 +61,12 @@ public:
     bool operator != (Polygon rhs) {
         return *this != rhs;
     }
+    /**
+     * Prints to console the polygon.
+     * @param out
+     * @param p
+     * @return out
+     */
     friend std::ostream& operator << (std::ostream& out, Polygon &p) {
         out << "{";
         for(unsigned short int i = 0; i < p.getPoints().size(); i++) {
@@ -154,6 +93,44 @@ public:
      * @return returns the numbers of points of the polygon.
      */
     int getNumberOfPoints() { return (this -> points).size(); }
+    /**
+     * Gets the area of the polygon.
+     * The points in the vector must be in order.
+     * @return float
+     */
+    float getArea() {
+        float area = 0;
+        for(int i = 0; i < this->points.size() - 1; i++) {
+            area += ((this->points.at(i).getX() * this->points.at(i + 1).getY()) - (this->points.at(i + 1).getX() * this->points.at(i).getY()));
+        }
+        return abs(area) / 2.0;
+    }
+    /**
+     * Returns the perimeter of the polygon.
+     * @return float
+     */
+    float getPerimeter() {
+        float perimeter = 0;
+        for(int i = 0; i < this->points.size(); i++) {
+            perimeter += getModule(this->points.at(i), this->points.at((i == this->points.size() - 1) ? 0 : i + 1));
+        }
+        return perimeter;
+    }
+    /**
+     * Returns the sum of all the angles.
+     * It only works with convex polygons.
+     * @return float
+     */
+    float getAngleSum() {
+        return (this->points.size() - 2) * 180;
+    }
+    /**
+     * Gets the number of diagonals in the polygon.
+     * @return int
+     */
+    int getNumberOfDiagonals() {
+        return ((this->points.size() * (this->points.size() - 3)) / 2);
+    }
 
     // # SETTERS # //
     /**
@@ -176,15 +153,13 @@ public:
      * @return returns true or false if the operation succeeded.
      */
     bool setPoint(unsigned short int index, Point<T> point) {
-        if((this -> points).size() > index && (this -> points).size() >= 3) {
+        if((this -> points).size() > index && (this -> points).size() >= 3)
             (this -> points).at(index) = point;
-        }
         return ((this -> points).size() > index && (this -> points).size() > 3);
     }
 
 private:
     std::vector<Point<T>> points;
-
     /**
      * Checks if a polygon is valid.
      *  Checks:
@@ -203,7 +178,16 @@ private:
     /**
      * @return returns a square (1x1).
      */
-    std::vector<Point<T>> getDefaultPolygon() { return {{0,0}, {0,1}, {1,0}, {1,1}}; }
+    std::vector<Point<T>> getDefaultPolygon() { return {{0,0}, {0,1}, {1,1}, {1,0}}; }
+    /**
+     * Gets the distance between two points.
+     * @param a
+     * @param b
+     * @return float
+     */
+    float getModule(Point<T> a, Point<T> b) {
+        return sqrt(pow((b - a).getX(), 2) + pow((b - a).getY(), 2));
+    }
 };
 
 #endif //TP3_POLYGON_H
