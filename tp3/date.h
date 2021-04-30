@@ -1,5 +1,5 @@
 /*************************
-    Trabajo Práctico 2
+    Trabajo Práctico 3
     Grupo: 9
 
     Julian Cordoba
@@ -15,7 +15,15 @@
 #include <cstdlib>
 
 /**
- * Class to manage the time.
+ *
+ * Al utilizar objetos, nos permite organizar mejor la información y usar las clases de una manera más
+ * amigable al programador. Otra ventaja es que se pueden definir datos privados (encapsulación).
+ *
+ */
+
+
+/**
+ * Class to manage dates.
  * @class Date
  */
 class Date {
