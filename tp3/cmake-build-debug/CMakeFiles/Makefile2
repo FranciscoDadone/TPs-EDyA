@@ -63,10 +63,10 @@ RM = /snap/clion/151/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp3
+CMAKE_SOURCE_DIR = "/home/franciscodadone/Desktop/Facultad Programación/EDyA/tp3"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/franciscodadone/Desktop/Facultad/EDyA/tp3/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/franciscodadone/Desktop/Facultad Programación/EDyA/tp3/cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -93,14 +93,14 @@ clean: CMakeFiles/tp3.dir/clean
 CMakeFiles/tp3.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tp3.dir/build.make CMakeFiles/tp3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/franciscodadone/Desktop/Facultad/EDyA/tp3/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target tp3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/franciscodadone/Desktop/Facultad Programación/EDyA/tp3/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target tp3"
 .PHONY : CMakeFiles/tp3.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tp3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp3/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/franciscodadone/Desktop/Facultad Programación/EDyA/tp3/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tp3.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/franciscodadone/Desktop/Facultad/EDyA/tp3/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/franciscodadone/Desktop/Facultad Programación/EDyA/tp3/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/tp3.dir/rule
 
 # Convenience name for target.
