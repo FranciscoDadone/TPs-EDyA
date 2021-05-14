@@ -1,7 +1,3 @@
-//
-// Created by franciscodadone on 5/12/21.
-//
-
 #ifndef TP4_GRAPH_LIST_H
 #define TP4_GRAPH_LIST_H
 
@@ -84,9 +80,5 @@ public:
 private:
     std::list<std::list<T>> data;
 };
-
-
-
-
 
 #endif //TP4_GRAPH_LIST_H
