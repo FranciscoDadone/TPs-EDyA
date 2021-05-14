@@ -123,6 +123,23 @@ public:
         return (p);
     };
 
+    /**
+     * Ejercicio 3 B
+     * @param l
+     * @return
+     */
+    ListaP<T> mixList(ListaP<T> l){
+        ListaP<T> m;
+        posicion p = primero, p1=l.primero;
+        while(p1!=l.fin()){
+            if(p1!=p){
+                insertar(recuperar(p1),p);
+                p1=l.siguiente(p1);
+                p= siguiente(p);
+            }
+        }
+    }
+
 
 protected:
 

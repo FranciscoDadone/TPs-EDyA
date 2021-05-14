@@ -104,6 +104,63 @@ public:
         cant = 0;
     }
 
+    bool estaVacia() {
+        return this->cantidad() == 0;
+    }
+
+    T recuperarPrimero() {
+        return elementos[0];
+    }
+
+    T recuperarUltimo() {
+        return elementos[cantidad() - 1];
+    }
+
+    void eliminarPrimerElemento() {
+        this->eliminar(0);
+    }
+
+    void eliminarUltimoElemento() {
+        this->eliminar(cantidad() - 1);
+    }
+
+    void insertarPrimero(T elemento) {
+        insertar(elemento, 0);
+    }
+
+    void insertarUltimo(T elemento) {
+        insertar(elemento, this->recuperarUltimo());
+    }
+
+    void intercambiar(ListaA<T> &lista2) {
+        T aux[] = this->elementos;
+        this->elementos = lista2;
+        lista2 = aux;
+    }
+
+    void juntar(posicion pos, ListaA<T> &lista2) {
+        if(pos > lista2.cantidad()) return;
+        for(T elemento: this->elementos) {
+            lista2.insertar(pos, elemento);
+        }
+    }
+
+    void eliminarElemento(T elemento) {
+        int i = 0;
+        for(T e: this->elementos) {
+            if(e == elemento) eliminar(i);
+            i++;
+        }
+    }
+
+    void unicos() {
+        for(int i = 0; i < this->cantidad(); i++) {
+            for(int j = i; j < this->cantidad() - 1; j++) {
+                if(elementos[i] == elementos[j + 1]) this->eliminar(j + 1);
+            }
+        }
+    }
+
 protected:
 
 private:
