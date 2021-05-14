@@ -1,131 +1,84 @@
-#ifndef LISTAA_H
-#define LISTAA_H
-
-#ifndef EXIT_ERROR
-	#define EXIT_ERROR 250
-#endif
-
-#include <iostream>
-#include <cstdlib>
-
-template<class T, unsigned short CANTELE=100>
-class ListaA {
+using namespace std;
+template<class T, unsigned int CANT=100>
+class Lista_A{
 public:
-
     typedef int posicion;
-
-    ListaA() {
+    Lista_A(){
         ultimo=-1;
         cant=0;
-    };
-
-    void insertar(T x, posicion p) {
-        if((p>=0) && (p<=ultimo+1)) {
-            int i;
-            for(i=ultimo; i>=p; i--) {
-                elementos[i+1] = elementos[i];
+    }
+    posicion primer(){
+        return 0;
+    }
+    posicion fin(){
+        return ultimo+1;
+    }
+    posicion siguiente(posicion p){
+        posicion ret;
+        if(p<0 or p>ultimo){
+            cerr<<"Ha intentado encontrar el proximo de una posicion invalida";
+            exit(EXIT_FAILURE);
+        }
+        return p+1;
+    }
+    posicion anterior(posicion p){
+    if(p<=0 or p>ultimo+1){
+        cerr<<"Ha intentado encontrar el anterior de una posicion invalida";
+        exit(EXIT_FAILURE);
+    }
+    return p-1;
+    }
+    void insertar(T x,posicion p){
+        if (p>=0 and p<=ultimo+1){
+            for(int i=ultimo;i>=p;i--){
+                elemento[i+1]=elemento[i];
             }
-            elementos[p] = x;
+            elemento [p]=x;
             ultimo++;
             cant++;
-        } else {
-            std::cerr << "\nHa intentado insertar en una posicion invalida\n";
-            exit(EXIT_ERROR);
         }
-    };
-
-    void eliminar(posicion p) {
-        if((p>=0) && (p<=ultimo)) {
-            int i;
-            for(i=p; i<ultimo; i++) {
-                elementos[i] = elementos[i+1];
+        else{
+            cerr<<"Ha intentado incertar un elemento en una posicion invalida";
+            exit(EXIT_FAILURE);
+        }
+    }
+    void eliminar(posicion p){
+        if(p>=0 and p<=ultimo){
+            for (int i=p;i<ultimo;i++){
+                elemento[i]=elemento[i+1];
             }
             ultimo--;
             cant--;
-        } else {
-            std::cerr << "\nHa intentado eliminar en una posicion invalida\n";
-            exit(EXIT_ERROR);
         }
-    };
-
-    int cantidad() {
-        return(cant);
-    };
-
-    posicion localizar(T x) {
-        int i;
-        for(i=0; ((i<=ultimo)&&(elementos[i]!=x)); i++);
-        return(i);
-    };
-
-    T recuperar(posicion p) {
-        T result;
-        if((p>=0) && (p<=ultimo))
-            result = elementos[p];
-        else {
-            std::cerr << "\nHa intentado recuperar en una posicion invalida\n";
-            exit(EXIT_ERROR);
+        else{
+            cerr<<"Ha intentado eliminar un elemento en una posicion invalida";
+            exit(EXIT_FAILURE);
         }
-        return(result);
-    };
-
-    posicion siguiente(posicion p) {
-        posicion result;
-        if((p>=0) && (p<=ultimo)) {
-                result=p+1;
-        } else {
-             std::cerr << "\nHa intentado encontrar el proximo de una posicion invalida\n";
-            exit(EXIT_ERROR);
-        }
-        return(result);
-    };
-
-    posicion anterior(posicion p) {
-        posicion result;
-        if((p>0) && (p<=ultimo+1)) {
-                result = p-1;
-        } else {
-            std::cerr << "\nHa intentado obtener el anterior de una posicion invalida\n";
-            exit(EXIT_ERROR);
-        }
-        return(result);
-    };
-
-    posicion fin() {
-        return(ultimo+1);
-    };
-
-    posicion primer() {
-        return 0;
-    };
-
-    void vaciar() {
-        ultimo = -1;
-        cant = 0;
     }
-
-protected:
-
+    T recuperar(posicion p){
+        if(p<0 or p>ultimo){
+             cerr<<"Ha intentado recuperar un elemento en una posicion invalida";
+            exit(EXIT_FAILURE);
+        }
+        return elemento[p];
+    }
+    int cantidad(){
+        return cant;
+    }
+    void vaciar(){
+        ultimo=-1;
+        cant=0;
+    }
+    posicion localizar(T x){
+        int i;
+        for (i=0;(i<=ultimo)and(elemento[i]!=x);i++);
+        if(i==ultimo+1){//revisar
+            i=-1;
+        }
+        return(i);
+    }
 private:
-    T elementos[CANTELE];
-    posicion ultimo;
-    int cant;
+    T elemento[CANT];
+    int ultimo,cant;
 };
 
-void test_lista_a(){
-    std::cout << std::endl << "Test lista array" << std::endl;
-    int cantidad;
-	ListaA<int> numeros;
-	numeros.vaciar();
-
-	for (cantidad=0;(cantidad<10);cantidad++)
-			numeros.insertar(cantidad, numeros.fin());
-
-	ListaA<int>::posicion pos=numeros.primer();
-	while(pos!=numeros.fin()){
-		std::cout << numeros.recuperar(pos) << "; ";
-		pos=numeros.siguiente(pos);
-	}
-}
-
-#endif // LISTAA_H
