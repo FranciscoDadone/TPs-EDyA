@@ -6,7 +6,6 @@
 #include "lista_a.h"
 
 #define Lista ListaA
-//#define Lista ListaP
 using namespace std;
 
 /**
@@ -67,8 +66,6 @@ Lista<T> mixList (Lista<T> l1 ,Lista<T> l2){
 
 
 
-
-
 int main() {
     /*
     GraphList<int> a;
@@ -96,16 +93,34 @@ int main() {
     }
      */
 
-    ListaA<int> l;
-    l.insertarPrimero(1);
-    l.insertarPrimero(2);
-    l.insertarPrimero(3);
-    l.insertarPrimero(4);
-
-    l.insertarPrimero(6);
-    for(int i = 0; i < l.cantidad(); i++) {
-        cout << l.recuperar(i) << endl;
+    Lista<int> l, k;
+    for(int i = 0; i < 5; i++) {
+        l.insertar(i, l.fin());
     }
+    for(int i = 5; i < 15; i++) {
+        k.insertar(i, k.fin());
+    }
+    /*
+    Lista<int>::posicion p = l.primer();
+    for(int i = 0; i < l.cantidad(); i++) {
+        cout << l.recuperar(p) << endl;
+        p = l.siguiente(p);
+    }
+    Lista<int>::posicion p1 = k.primer();
+    for(int i = 0; i < k.cantidad(); i++) {
+        cout << k.recuperar(p1) << endl;
+        p1 = k.siguiente(p1);
+    }
+    */
+
+    Lista<int> j = l.mixList(k);
+
+    Lista<int>::posicion p2 = j.primer();
+    for(int i = 0; i < j.cantidad(); i++) {
+        cout << j.recuperar(p2) << endl;
+        p2 = j.siguiente(p2);
+    }
+
 
     //cout << l.eliminarPrimerElemento() << endl;
 

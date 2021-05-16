@@ -1,119 +1,177 @@
-using namespace std;
+#ifndef LISTAP_H
+#define LISTAP_H
+
+#ifndef EXIT_ERROR
+#define EXIT_ERROR 251
+#endif
+
+#include <iostream>
+#include <cstdlib>
+#include "nodo.h"
 
 template<class T>
-class Nodo{
+class ListaP {
 public:
-    Nodo(){
-        //cout<<endl<< "new Lista "<< this<<endl;//revisar estos
-    }
-    ~Nodo(){
-        //cout<<endl<< "delete Lista "<< this<<endl;
-    }
-    T elemento;
-    Nodo<T> *sig;
-private:
 
 
-};
-
-template<class T>
-class Lista_P{
-public:
     typedef Nodo<T> *posicion;
 
-    Lista_P(){
-        primero=new Nodo<T>;
-        ultimo=primero;
-        primero->sig=NULL;
-        cant=0;
-    }
-    posicion primer(){
-        return primero;
-    }
-    posicion fin(){
-        return ultimo;
-    }
-    posicion siguiente(posicion p){
-        if(p==NULL or p==ultimo){
-            cerr<<"Ha intentado encontrar el proximo de una posicion invalida";
-            exit(EXIT_FAILURE);
+    ListaP() {
+        primero = new Nodo<T>;
+        ultimo = primero;
+        primero->siguiente = NULL;
+        cant = 0;
+    };
+
+    ~ListaP() {};
+
+    int cantidad() {
+        return(cant);
+    };
+
+    void insertar(T x, posicion p) {
+        posicion temp;
+        if(p!=NULL) {
+            temp = p->siguiente;
+            p->siguiente = new Nodo<T>;
+            p->siguiente->elemento = x;
+            p->siguiente->siguiente = temp;
+            if(p==ultimo)
+                ultimo = p->siguiente;
+            cant++;
+        } else {
+            std::cerr << "\nHa intentado insertar en una posicion invalida\n";
+            exit(EXIT_ERROR);
         }
-        return p->sig;
-    }
-    posicion anterior(posicion p){
-        posicion q=primero;
-        if(p!=NULL){
-            if(p!=q){
-                while(q->sig!=NULL and q->sig!=p){
-                    q=q->sig;
-                }
+    };
+
+    void eliminar(posicion p) {
+        if((p!=NULL) && (p!=ultimo)) {
+            posicion temp = p->siguiente;
+            p->siguiente = p->siguiente->siguiente;
+            if(temp==ultimo)
+                ultimo=p;
+            delete temp;
+            cant--;
+        } else {
+            std::cerr << "\nHa intentado eliminar en una posicion invalida\n";
+            exit(EXIT_ERROR);
+        }
+    };
+
+    T recuperar(posicion p) {
+        T result;
+        if(p!=NULL && p->siguiente!=NULL)
+            result = p->siguiente->elemento;
+        else {
+            std::cerr << "\nHa intentado recuperar en una posicion invalida\n";
+            exit(EXIT_ERROR);
+        }
+        return(result);
+    };
+
+    posicion siguiente(posicion p) {
+        posicion result;
+        if(p!=NULL && p!=ultimo)
+            result = p->siguiente;
+        else {
+            std::cerr << "\nHa intentado encontrar el proximo de una posicion invalida\n";
+            exit(EXIT_ERROR);
+        }
+        return(result);
+    };
+
+    posicion anterior(posicion p) {
+        posicion q = primero;
+        if(p!=NULL) {
+            if(p!=q) {
+                while(q->siguiente!=NULL &&q->siguiente!=p)
+                    q=q->siguiente;
+            }
+        } else {
+            std::cerr << "\nHa intentado encontrar el anterior de una posicion invalida\n";
+            exit(EXIT_ERROR);
+        }
+        return (q);
+    };
+
+    posicion fin() {
+        return(ultimo);
+    };
+
+    posicion primer() {
+        return(primero);
+    };
+
+    void vaciar() {
+        posicion p = primero;
+        while(p->siguiente!=NULL) {
+            posicion temp = p->siguiente;
+            p->siguiente = p->siguiente->siguiente;
+            delete temp;
+        }
+        ultimo = p;
+        cant = 0;
+    };
+
+    posicion localizar (T x) {
+        posicion p;
+        p=primero;
+        while(p->siguiente!=NULL && p->siguiente->elemento!=x) {
+            p=p->siguiente;
+        }
+        return (p);
+    };
+
+    ListaP<T> mixList(ListaP<T> l){
+        ListaP<T>aux;
+        ListaP<T>::posicion p1 = this->primer(),
+                            p2 = l.primer();
+        while(aux.cantidad() != this->cantidad() + l.cantidad()){
+            if(p1 != this->fin()){
+                aux.insertar(this->recuperar(p1), aux.fin());
+                p1 = this->siguiente(p1);
+            }
+            if(p2 != l.fin()){
+                aux.insertar(l.recuperar(p2), aux.fin());
+                p2 = l.siguiente(p2);
             }
         }
-        else{
-            cerr<<"Ha intentado encontrar el anterior de una posicion invalida";
-            exit(EXIT_FAILURE);
-        }
-        return q;
+        return aux;
     }
 
-    void insertar(T x, posicion p){
-        posicion sav;
-        if(p!=NULL){
-            sav=p->sig;
-            p->sig=new Nodo<T>;
-            p->sig->elemento=x;
-            p->sig->sig=sav;
-            if(p==ultimo){ultimo=p->sig;}
-            cant++;
-        }
-        else{
-          cerr<<"Ha intentado incertar un elemento en una posicion invalida";
-            exit(EXIT_FAILURE);
-        }
-    }
-    void eliminar(posicion p){
-        posicion sav;
-        if(p!=NULL and p!=ultimo){
-            sav=p->sig;
-            p->sig=p->sig->sig;
-            if(sav==ultimo){ultimo=p;}
-            delete sav;
-            cant--;
-        }
-        else{
-            cerr<<"Ha intentado eliminar un elemento en una posicion invalida";
-            exit(EXIT_FAILURE);
-        }
-    }
-    T recuperar (posicion p){
-        if(p==NULL or p==ultimo){
-            cerr<<"Ha intentado recuperar un elemento en una posicion invalida";
-            exit(EXIT_FAILURE);
-        }
-        return p->sig->elemento;
-    }
-    void vaciar(){
-        posicion q=primero;
-        posicion sav;
-        while(q->sig!=NULL){
-            sav=q->sig;
-            q->sig=q->sig->sig;
-            delete sav;
-        }
-        ultimo=q;
-        cant=0;
-    }
-    posicion localizar(T x){
-        posicion q=primero;
-        while(q->sig!=NULL and q->sig->elemento!=x){
-            q=q->sig;
-        }
-        return q;
-    }
     bool estaVacia(){
-        return primero==ultimo;
+        return primero == ultimo;
     }
+
+    T recuperarPrimero() {
+
+    }
+
+
+protected:
+
 private:
-    posicion primero,ultimo;
+    posicion primero;
+    posicion ultimo;
     unsigned int cant;
 };
+
+
+void test_lista_p(){
+    std::cout << std::endl << "Test lista puntero" << std::endl;
+    int cantidad;
+    ListaP<int> numeros;
+    numeros.vaciar();
+
+    for (cantidad=0; cantidad<10; cantidad++)
+        numeros.insertar(cantidad, numeros.fin());
+
+    ListaP<int>::posicion pos = numeros.primer();
+    while(pos != numeros.fin()){
+        std::cout << numeros.recuperar(pos)<<"; ";
+        pos = numeros.siguiente(pos);
+    }
+}
+
+#endif // LISTAP_H

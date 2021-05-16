@@ -9,10 +9,10 @@ template<class T>
 class Nodo {
  public:
     Nodo() {
-        std::cout << std::endl << "new Nodo " << this << std::endl;
+        //std::cout << std::endl << "new Nodo " << this << std::endl;
     }
     ~Nodo() {
-        std::cout << std::endl << "delete Nodo " << this << std::endl;
+        //std::cout << std::endl << "delete Nodo " << this << std::endl;
     }
     T elemento;
     Nodo<T> *siguiente;

@@ -161,6 +161,23 @@ public:
         }
     }
 
+    ListaA mixList (ListaA l) {
+        ListaA aux;
+        ListaA::posicion p1 = this->primer(),
+                         p2 = l.primer();
+        while(aux.cantidad() != this->cantidad() + l.cantidad()){
+            if(p1 != this->fin()){
+                aux.insertar(this->recuperar(p1), aux.fin());
+                p1 = this->siguiente(p1);
+            }
+            if(p2 != l.fin()){
+                aux.insertar(l.recuperar(p2), aux.fin());
+                p2 = l.siguiente(p2);
+            }
+        }
+        return aux;
+    }
+
 protected:
 
 private:
