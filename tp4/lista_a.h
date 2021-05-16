@@ -133,15 +133,29 @@ public:
     }
 
     void intercambiar(ListaA<T> &lista2) {
-        T aux[] = this->elementos;
-        this->elementos = lista2;
-        lista2 = aux;
+        T aux[CANTELE];
+        for(int i = 0; i < CANTELE; i++) {
+            aux[i] = elementos[i];
+        }
+        for(int i = 0; i < CANTELE; i++) {  // copia el segundo en el primero
+            elementos[i] = lista2.elementos[i];
+        }
+        for(int i = 0; i < CANTELE; i++) {  // copia el aux en el segundo
+            lista2.elementos[i] = aux[i];
+        }
+
+        int cantAux = cant;
+        cant = lista2.cant;
+        lista2.cant = cantAux;
+
+        ultimo = cant - 1;
+        lista2.ultimo = lista2.cant - 1;
     }
 
     void juntar(posicion pos, ListaA<T> &lista2) {
         if(pos > lista2.cantidad()) return;
-        for(T elemento: this->elementos) {
-            lista2.insertar(pos, elemento);
+        for(int i = this->cantidad() - 1; i >= 0; i--) {
+            lista2.insertar(this->recuperar(i), pos);
         }
     }
 
@@ -161,6 +175,11 @@ public:
         }
     }
 
+    /**
+     * Ejercicio 3 B
+     * @param l
+     * @return
+     */
     ListaA mixList (ListaA l) {
         ListaA aux;
         ListaA::posicion p1 = this->primer(),

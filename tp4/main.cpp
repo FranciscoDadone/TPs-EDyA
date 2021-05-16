@@ -5,7 +5,7 @@
 #include "lista_p.h"
 #include "lista_a.h"
 
-#define Lista ListaA
+#define Lista ListaP
 using namespace std;
 
 /**
@@ -100,25 +100,54 @@ int main() {
     for(int i = 5; i < 15; i++) {
         k.insertar(i, k.fin());
     }
-    /*
-    Lista<int>::posicion p = l.primer();
-    for(int i = 0; i < l.cantidad(); i++) {
-        cout << l.recuperar(p) << endl;
-        p = l.siguiente(p);
-    }
-    Lista<int>::posicion p1 = k.primer();
-    for(int i = 0; i < k.cantidad(); i++) {
-        cout << k.recuperar(p1) << endl;
-        p1 = k.siguiente(p1);
-    }
-    */
+    l.insertar(1, l.primer());
+    l.insertar(1, l.primer());
 
+    Lista<int>::posicion p1 = l.primer(), p2 = k.primer();
+    cout << "Lista l" << endl;
+    for(int i = 0; i < l.cantidad(); i++) {
+        cout << l.recuperar(p1) << endl;
+        p1 = l.siguiente(p1);
+    }
+    cout << "Lista k" << endl;
+    for(int i = 0; i < k.cantidad(); i++) {
+        cout << k.recuperar(p2) << endl;
+        p2 = k.siguiente(p2);
+    }
+    cout << "-----------------------" << endl;
+
+
+    /*
     Lista<int> j = l.mixList(k);
 
     Lista<int>::posicion p2 = j.primer();
     for(int i = 0; i < j.cantidad(); i++) {
         cout << j.recuperar(p2) << endl;
         p2 = j.siguiente(p2);
+    }*/
+
+
+    //p2 = k.primer();
+    //l.juntar(p2, k);
+    //k.insertar(14, k.fin());
+    //k.unicos();
+    //l.eliminarElemento(1);
+    //l.intercambiar(k);
+
+
+    //l.unicos();
+
+    p1 = l.primer();
+    cout << "Lista l" << endl;
+    for(int i = 0; i < l.cantidad(); i++) {
+        cout << l.recuperar(p1) << endl;
+        p1 = l.siguiente(p1);
+    }
+    cout << "Lista k" << endl;
+    p2 = k.primer();
+    for(int i = 0; i < k.cantidad(); i++) {
+        cout << k.recuperar(p2) << endl;
+        p2 = k.siguiente(p2);
     }
 
 

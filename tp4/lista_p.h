@@ -123,6 +123,11 @@ public:
         return (p);
     };
 
+    /**
+     * Ejercicio 3 B
+     * @param l
+     * @return
+     */
     ListaP<T> mixList(ListaP<T> l){
         ListaP<T>aux;
         ListaP<T>::posicion p1 = this->primer(),
@@ -145,7 +150,80 @@ public:
     }
 
     T recuperarPrimero() {
+        return recuperar(0);
+    }
 
+    T recuperarUltimo() {
+        return recuperar(cant - 1);
+    }
+
+    void eliminarPrimerElemento() {
+        eliminar(0);
+    }
+
+    void eliminarUltimoElemento() {
+        eliminar(cant - 1);
+    }
+
+    void insertarPrimero(T e) {
+        insertar(e, 0);
+    }
+
+    void insertarUltimo(T e) {
+        insertar(e, cant - 1);
+    }
+
+    void intercambiar(ListaP<T> &lista2) {
+        int cantidad = this->cantidad();
+        T aux[cantidad];
+
+        ListaP<T>::posicion p1 = this->primer(), p2 = lista2.primer();
+
+        for(int i = 0; i < this->cantidad(); i++) {
+            aux[i] = this->recuperar(p1); // copia el primero al aux
+            p1 = this->siguiente(p1);
+        }
+        this->vaciar();
+        for(int i = 0; i < lista2.cantidad(); i++) {
+            this->insertar(lista2.recuperar(p2), this->fin()); // copiar el segundo en el primero
+            p2 = lista2.siguiente(p2);
+        }
+        lista2.vaciar();
+        for(int i = 0; i < cantidad; i++) {
+            lista2.insertar(aux[i], lista2.fin()); // copiar el aux al segundo
+        }
+    }
+
+    void juntar(posicion pos, ListaP<T> &lista2) {
+        ListaP<T>::posicion p = this->primer();
+        T aux[this->cantidad()];
+        for(int i = this->cantidad() - 1; i >= 0; i--) {
+            aux[i] = this->recuperar(p);
+            p = siguiente(p);
+        }
+        for(T e: aux) { lista2.insertar(e, pos); }
+    }
+
+    void eliminarElemento(T elem) {
+        ListaP<T>::posicion p = this->primer();
+        for(int i = 0; i < this->cantidad(); i++) {
+            if(this->recuperar(p) == elem) eliminar(p);
+            p = siguiente(p);
+        }
+    }
+
+    void unicos() {
+        ListaP<T>::posicion p = this->primer(), p1;
+        for(int i = 0; i < this->cantidad(); i++) {
+            p1 = p;
+            for(int j = i; j < this->cantidad() - 1; j++) {
+                p1 = siguiente(p1);
+                if(this->recuperar(p) == this->recuperar(p1)) {
+                    this->eliminar(p1);
+                }
+            }
+            p = this->primer();
+        }
     }
 
 
