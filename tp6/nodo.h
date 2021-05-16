@@ -1,4 +1,12 @@
 /* Copyright 2017 EDyA */
+/*************************
+    Trabajo Práctico 6
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
 
 #ifndef NODO_H
 #define NODO_H

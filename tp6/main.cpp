@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 6
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #include <iostream>
 #include "graph_list.h"
 #include <iostream>

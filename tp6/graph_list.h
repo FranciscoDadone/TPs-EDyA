@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 6
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef TP4_GRAPH_LIST_H
 #define TP4_GRAPH_LIST_H
 
