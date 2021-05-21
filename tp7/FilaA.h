@@ -58,6 +58,44 @@ public:
         return elementos[primero];
     }
 
+    T recuperarUltimo(){
+        if (primero == (ultimo+1)%LONG_MAX_FILA) {
+            std::cerr << "Ha intentado obtener el frente de una fila vacia";
+            exit(EXIT_ERROR);
+        }
+        return elementos[ultimo];
+    }
+
+    void quitarN(unsigned int n){
+        if(n > this->cantidad()){
+            this-> vaciar();
+        }else{
+            for(int i=0; i<n; i++){
+                this->quitar();
+            }
+        }
+    }
+
+    void ponerAlFrente(T x){
+        if (((((ultimo+1)%LONG_MAX_FILA)+1)%LONG_MAX_FILA) == primero) {
+            std::cerr << "Ha intentado poner en una fila llena";
+            exit(EXIT_ERROR);
+        } else {
+            primero = (primero-1)%LONG_MAX_FILA;
+            elementos[primero]=x;
+            cant++;
+        }
+    }
+
+    void invertir() {
+        FilaA<int> aux = *this;
+        const int k = cant;
+        for (int i = 0; i < k; i++) {
+            this->poner(aux.elementos[aux.cantidad() - i]);
+            this->quitar();
+        }
+    }
+
     int cantidad() {
         return cant;
     }

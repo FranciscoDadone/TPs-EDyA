@@ -1,8 +1,24 @@
 #include <iostream>
 #include <list>
-#include "filaa.h"
+#include "FilaA.h"
+#include <stack>
 
 using namespace std;
+
+/**
+ * Prints stack in reverse order recursively.
+ * @tparam T
+ * @param s
+ */
+template <class T> void print(stack<T> s) {
+    if (!s.empty()) {
+        T element = s.top();
+        s.pop();
+        print(s);
+        cout << element << " ";
+        s.push(element);
+    }
+}
 
 list<string> generarNBinarios(unsigned int n){
     FilaA <string> f;
@@ -38,27 +54,53 @@ void print(list<string> const &list)
     }
 }
 
-int main()
-{
-  FilaA<int> f;
-  f.poner(5);
-  f.poner(6);
-  f.poner(7);
-  f.poner(8);
-   //cout<<f.recuperarUltimo()<<endl;
+int main() {
+    stack<int> s;
+
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+
+    print(s);
+
+    cout << "\n";
+
+    FilaA<int> f, g;
+    f.poner(1);
+    f.poner(2);
+    f.poner(3);
+    f.poner(4);
+    f.poner(5);
+    cout << f << endl;
+
+    g.poner(1);
+    g.poner(2);
+    g.poner(3);
+    g.poner(4);
+    g.poner(5);
+
+    cout << (f == g) << endl;
+    cout << (f != g) << endl;
+
+
+  //cout<<f.recuperarUltimo()<<endl;
   //f.quitarN(2);
   //f.ponerAlFrente(15);
   //f.ponerAlFrente(15);
-    // f.ponerAlFrente(15);
+  // f.ponerAlFrente(15);
   //f.ponerAlFrente(15);
   //f.invertir();
   print(generarNBinarios(2));
   /*
   const int k= f.cantidad();
   for(int i=0; i<k ;i++){
-    cout<< f.recuperarFrente()<<endl;
-    f.quitar();
-   }
-   */
+     cout<< f.recuperarFrente()<<endl;
+     f.quitar();
+  }
+  */
+
+
     return 0;
 }
