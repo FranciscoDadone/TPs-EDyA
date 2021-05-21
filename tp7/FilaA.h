@@ -68,6 +68,26 @@ public:
         cant = 0;
     }
 
+    friend std::ostream& operator << (std::ostream& out, const FilaA &f) {
+        for(int i = 1; i < f.cant + 1; i++) {
+            out << f.elementos[i] << " ";
+        }
+        return out;
+    }
+
+    friend bool operator == (const FilaA& lhs, const FilaA& rhs){
+        if(lhs.cant != rhs.cant) return false;
+        for(int i = 1; i < lhs.cant + 1; i++) {
+            if(lhs.elementos[i] != rhs.elementos[i]) return false;
+        }
+        return true;
+    }
+
+    friend bool operator != (const FilaA& lhs, const FilaA& rhs){
+        return !(lhs == rhs);
+    }
+
+
 private:
     T elementos[LONG_MAX_FILA];
     unsigned int ultimo, primero;

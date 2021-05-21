@@ -3,4 +3,4 @@ project(tp7)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(tp7 main.cpp filaA.h)
+add_executable(tp7 main.cpp FilaA.h)

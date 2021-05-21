@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include "FilaA.h"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ using namespace std;
  */
 template <class T> void print(stack<T> s) {
     if (!s.empty()) {
-        int element = s.top();
+        T element = s.top();
         s.pop();
         print(s);
         cout << element << " ";
@@ -30,7 +31,24 @@ int main() {
 
     print(s);
 
+    cout << "\n";
 
+    FilaA<int> f, g;
+    f.poner(1);
+    f.poner(2);
+    f.poner(3);
+    f.poner(4);
+    f.poner(5);
+    cout << f << endl;
+
+    g.poner(1);
+    g.poner(2);
+    g.poner(3);
+    g.poner(4);
+    g.poner(5);
+
+    cout << (f == g) << endl;
+    cout << (f != g) << endl;
 
     return 0;
 }
