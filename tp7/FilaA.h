@@ -58,41 +58,56 @@ public:
         return elementos[primero];
     }
 
+    /**
+     * Returns the last element.
+     * @return
+     */
     T recuperarUltimo(){
-        if (primero == (ultimo+1)%LONG_MAX_FILA) {
+        if (primero == (ultimo + 1) % LONG_MAX_FILA) {
             std::cerr << "Ha intentado obtener el frente de una fila vacia";
             exit(EXIT_ERROR);
         }
         return elementos[ultimo];
     }
-
+    /**
+     * Takes the firsts n elements.
+     * @param n
+     */
     void quitarN(unsigned int n){
-        if(n > this->cantidad()){
-            this-> vaciar();
-        }else{
-            for(int i=0; i<n; i++){
+        if(n > this->cantidad()) {
+            this->vaciar();
+        } else {
+            for(int i = 0; i < n; i++) {
                 this->quitar();
             }
         }
     }
-
+    /**
+     * Puts a new element in front of the array.
+     * @param x
+     */
     void ponerAlFrente(T x){
-        if (((((ultimo+1)%LONG_MAX_FILA)+1)%LONG_MAX_FILA) == primero) {
+        if (((((ultimo + 1) % LONG_MAX_FILA) + 1) % LONG_MAX_FILA) == primero) {
             std::cerr << "Ha intentado poner en una fila llena";
             exit(EXIT_ERROR);
         } else {
-            primero = (primero-1)%LONG_MAX_FILA;
-            elementos[primero]=x;
             cant++;
+            for(int i = cant; i > primero; i--) {
+                elementos[i] = elementos[i-1];
+            }
+            elementos[primero] = x;
         }
     }
-
+    /**
+     * Inverts the array.
+     */
     void invertir() {
-        FilaA<int> aux = *this;
-        const int k = cant;
-        for (int i = 0; i < k; i++) {
-            this->poner(aux.elementos[aux.cantidad() - i]);
-            this->quitar();
+        T aux[cant + 1];
+        for(int i = 1; i < cant + 1; i++) {
+            aux[i] = elementos[i];
+        }
+        for(int i = cant; i > -1; i--) {    // es -1 porque los array empiezan en 1.
+            elementos[cant - i] = aux[i + 1];
         }
     }
 
@@ -106,13 +121,25 @@ public:
         cant = 0;
     }
 
+    /**
+     * Out operator.
+     * @param out
+     * @param f
+     * @return
+     */
     friend std::ostream& operator << (std::ostream& out, const FilaA &f) {
+
         for(int i = 1; i < f.cant + 1; i++) {
             out << f.elementos[i] << " ";
         }
         return out;
     }
-
+    /**
+     * Equals operator.
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     friend bool operator == (const FilaA& lhs, const FilaA& rhs){
         if(lhs.cant != rhs.cant) return false;
         for(int i = 1; i < lhs.cant + 1; i++) {
@@ -120,7 +147,12 @@ public:
         }
         return true;
     }
-
+    /**
+     * Not equal operator.
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     friend bool operator != (const FilaA& lhs, const FilaA& rhs){
         return !(lhs == rhs);
     }
