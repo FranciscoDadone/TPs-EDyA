@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 7
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #include <iostream>
 #include <list>
 #include "FilaA.h"
@@ -31,45 +40,36 @@ void print(stack<T> s) {
  *    Es apropiado implementar los operadores de igualdad, desigualdad y el cout.
  */
 
+/**
+ * Generate n binary numbers.
+ * @param n
+ * @return list
+ */
 std::list<std::string> generarNBinarios(unsigned int n) {
+    std::list<std::string> lista;
+    if(n > 255) return lista;
+    FilaA<std::string, 258> fila;
 
-    FilaA<std::string> f;
-    std::list<std::string> l;
+    fila.poner("1");
 
-    if (!n) {
-        return l;
-    } else {
-        f.poner("1");
-        for (unsigned int i = 1; i < n; i++) {
-            std::string a = f.recuperarFrente();
-            if(f.cantidad() != 1) f.quitar();
-            std::string b = a;
-            f.poner(a.append("0"));
-            f.poner(b.append("1"));
-        }
+    int i = 1;
+    while ((i++) <= n) {
+        fila.poner(fila.recuperarFrente() + "0");
+        fila.poner(fila.recuperarFrente() + "1");
 
-
-        for (unsigned int i = 0; i < n; i++) {
-            l.push_back(f.recuperarFrente());
-            f.quitar();
-        }
-        return l;
+        lista.push_back(fila.recuperarFrente());
+        fila.quitar();
     }
+    return lista;
 }
 
-void print(std::list<std::string> const &list) {
-    for (auto const &i: list) {
-        std::cout << i << std::endl;
-    }
-}
 /**
  * To prefix notation.
  * @param pre_exp
  * @return
  */
 std::string preToInfix(std::string pre_exp) {
-    int i,
-            largo = pre_exp.size();
+    int i, largo = pre_exp.size();
     std::string ret = "";
     stack<char> ope;
     for (i = 0; i < largo; i++) {
@@ -167,7 +167,15 @@ int main() {
     // f.ponerAlFrente(15);
     //f.ponerAlFrente(15);
     //f.invertir();
-    print(generarNBinarios(7));
+
+    /*
+    for (auto const &i: generarNBinarios(255)) {
+        std::cout << i << std::endl;
+    }
+    */
+
+    //generate(50);
+//    generarNBinarios(50);
     /*
     const int k= f.cantidad();
     for(int i=0; i<k ;i++){

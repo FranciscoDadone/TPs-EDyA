@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 7
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef PILAA_H
 #define PILAA_H
 #ifndef EXIT_ERROR

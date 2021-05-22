@@ -1,3 +1,12 @@
+/*************************
+    Trabajo Práctico 7
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 template<class T>
 class Nodo{
 public:

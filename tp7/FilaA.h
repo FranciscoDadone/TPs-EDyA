@@ -1,4 +1,13 @@
 /* Copyright 2020 EDyA */
+/*************************
+    Trabajo Práctico 7
+    Grupo: 9
+
+    Julian Cordoba
+    Valentín Fernandez
+    Francisco Dadone
+*************************/
+
 #ifndef FILAA_H
 #define FILAA_H
 
