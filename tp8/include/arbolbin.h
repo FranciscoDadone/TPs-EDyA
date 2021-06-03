@@ -40,6 +40,7 @@ class ArbolBin{
         void asignarNodo(const T &, Nodo<T>* &);
         void modificarDato(const T &, Nodo<T>*);
         void talar();
+        void insertABB(T arr[]);
 };
 
 template<class T>
@@ -137,6 +138,29 @@ void ArbolBin<T>::talarR(Nodo<T> *p) {
             talarR(p->HDer);
             delete p->HDer;
             p->HDer = nullptr;
+        }
+    }
+}
+
+template<class T>
+void ArbolBin<T>::insertABB(T arr[]) {
+    for(int i = 0; i <= (sizeof(arr)/sizeof(*arr)); i++) {
+        if(this->raiz == NULL) {
+            this->asignarNodo(arr[i], this->raiz);
+        } else {
+            Nodo<T> * temp = this->raiz;
+            while(temp != NULL) {
+                if(arr[i] == temp->elemento) return;
+                else if(arr[i] < temp->elemento && temp->HIzq == NULL) {
+                    this->asignarNodo(arr[i], *this->hijoIzq(temp));
+                    break;
+                } else if(arr[i] < temp->elemento) {
+                    temp = temp->HIzq;
+                } else if(arr[i] > temp->elemento && temp->HDer == NULL) {
+                    this->asignarNodo(arr[i], *this->hijoDer(temp));
+                    break;
+                } else temp = temp->HDer;
+            }
         }
     }
 }

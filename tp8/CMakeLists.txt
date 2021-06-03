@@ -3,4 +3,4 @@ project(tp8)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(tp8 main.cpp include/arbol_test.h include/arbolbin.h include/arbolbinviewer.h)
+add_executable(tp8 main.cpp include/arbol_test.h include/arbolbin.h include/arbolbinviewer.h arbol.h)
