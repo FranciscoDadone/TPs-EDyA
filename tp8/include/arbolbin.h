@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
+#include <vector>
 
 #define EXIT_ERROR 255
 
@@ -30,6 +32,7 @@ class ArbolBin{
  private:
         Nodo<T> *raiz;
         void talarR(Nodo<T> *pos);
+        void recorrer(Nodo<T>*n);
  public:
         ArbolBin();
         Nodo<T>* padre(Nodo<T>*, Nodo<T>*);
@@ -40,7 +43,8 @@ class ArbolBin{
         void asignarNodo(const T &, Nodo<T>* &);
         void modificarDato(const T &, Nodo<T>*);
         void talar();
-        void insertABB(T arr[]);
+        void insertABB(std::vector<T>);
+        void listarPostOrden();
 };
 
 template<class T>
@@ -143,24 +147,38 @@ void ArbolBin<T>::talarR(Nodo<T> *p) {
 }
 
 template<class T>
-void ArbolBin<T>::insertABB(T arr[]) {
-    for(int i = 0; i <= (sizeof(arr)/sizeof(*arr)); i++) {
+void ArbolBin<T>::insertABB(std::vector<T> arr) {
+    for(T element: arr) {
         if(this->raiz == NULL) {
-            this->asignarNodo(arr[i], this->raiz);
+            this->asignarNodo(element, this->raiz);
         } else {
             Nodo<T> * temp = this->raiz;
             while(temp != NULL) {
-                if(arr[i] == temp->elemento) return;
-                else if(arr[i] < temp->elemento && temp->HIzq == NULL) {
-                    this->asignarNodo(arr[i], *this->hijoIzq(temp));
+                if(element == temp->elemento) return;
+                else if(element < temp->elemento && temp->HIzq == NULL) {
+                    this->asignarNodo(element, *this->hijoIzq(temp));
                     break;
-                } else if(arr[i] < temp->elemento) {
+                } else if(element < temp->elemento) {
                     temp = temp->HIzq;
-                } else if(arr[i] > temp->elemento && temp->HDer == NULL) {
-                    this->asignarNodo(arr[i], *this->hijoDer(temp));
+                } else if(element > temp->elemento && temp->HDer == NULL) {
+                    this->asignarNodo(element, *this->hijoDer(temp));
                     break;
                 } else temp = temp->HDer;
             }
         }
     }
+}
+
+template<class T>
+void ArbolBin<T>::recorrer(Nodo<T> * n){
+    if(n != nullptr){
+        recorrer(n->HIzq);
+        recorrer(n->HDer);
+        std::cout << (n->elemento) << " ";
+    }
+}
+
+template<class T>
+void ArbolBin<T>::listarPostOrden() {
+    recorrer(raiz);
 }

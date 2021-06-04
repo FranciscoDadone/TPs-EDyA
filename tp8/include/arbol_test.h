@@ -2,7 +2,7 @@
 #include <ctime>
 #include <cassert>
 
-#include "arbolbin.h"
+//#include "arbolbin.h"
 #include "arbolbinviewer.h"
 
 void GenerarArray(int array[],int min,int max,int cant) {
